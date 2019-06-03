@@ -71,7 +71,7 @@ TODO:
 
 ### 3.i. Diagrama de Clases
 
-[!Diagrama de Clases](diagrama.png)
+![Diagrama de Clases](diagrama.png)
 
 ## 4. Conclusiones
 
