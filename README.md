@@ -71,7 +71,7 @@ TODO:
 
 ### 3.i. Diagrama de Clases
 
-![Diagrama de Clases](diagrama.png)
+![Diagrama de Clases](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/diagrama.puml)
 
 ## 4. Conclusiones
 
