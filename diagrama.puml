@@ -1,0 +1,28 @@
+@startuml
+
+package stdio.h <<Folder>> {
+    class FILE
+}
+
+class menu
+class avl
+class cliente
+class indice
+class FILE
+class credito
+
+aplicacion .right.> menu
+aplicacion ..> indice
+aplicacion ..> FILE
+aplicacion ..> cliente
+aplicacion ..> credito
+cliente -left-o credito
+cliente ..> FILE
+indice ..> FILE
+indice <|.down. avl
+indice .up.> iterador
+aplicacion .left.> iterador
+
+
+
+@enduml
