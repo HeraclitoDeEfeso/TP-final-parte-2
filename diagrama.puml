@@ -1,28 +1,37 @@
 @startuml
 
+package tp2 <<Folder>> {
+    class Aplicacion
+    class Indice
+    class Cliente
+    class Credito
+    class Iterador
+}
+
 package stdio.h <<Folder>> {
     class FILE
 }
 
-class menu
-class avl
-class cliente
-class indice
-class FILE
-class credito
+package avl.h <<Folder>> {
+    class AVL
+}
 
-aplicacion .right.> menu
-aplicacion ..> indice
-aplicacion ..> FILE
-aplicacion ..> cliente
-aplicacion ..> credito
-cliente -left-o credito
-cliente ..> FILE
-indice ..> FILE
-indice <|.down. avl
-indice .up.> iterador
-aplicacion .left.> iterador
+package menu.h <<Folder>> {
+    class Menu
+}
 
+Aplicacion .left.> Menu
+Aplicacion ..> Indice
+Aplicacion ..> FILE
+Aplicacion ..> Cliente
+Aplicacion ..> Credito
+Cliente -left-o Credito
+Cliente ..> FILE
+Indice ..> FILE
+Indice *-down- AVL
+Indice .up.> Iterador
+Aplicacion .left.> Iterador
 
+hide class circle
 
 @enduml

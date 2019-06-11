@@ -1,0 +1,22 @@
+@startuml
+
+participant Aplicacion
+participant "nuevo:Cliente" as Cliente
+collections "nuevos:Cliente" as Lista
+collections "indices:Indice" as Indice
+
+create Cliente
+Aplicacion -> Cliente: crearCliente(siguienteID)
+activate Cliente
+Cliente -> Cliente: formularioCliente(nuevo)
+return nuevo
+Aplicacion -> Lista: agregar(nuevo)
+activate Lista
+return 
+loop por cada indice en indices
+	Aplicacion -> Indice: agregar(clave, siguienteID)
+	activate Indice
+	return 
+end
+
+@enduml

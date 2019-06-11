@@ -1,0 +1,50 @@
+@startuml
+
+participant Aplicacion
+participant "vista:Indice" as Vista
+participant "iterador:Iterador" as Iterador
+participant "cliente:Cliente" as Cliente
+collections "nuevo:Cliente" as Lista
+database "base:FILE" as FILE
+
+Aplicacion -> Vista: obtenerIterador(vista)
+activate Vista
+create Iterador
+Vista -> Iterador: crearIterador(vista, recorrido)
+return iterador
+loop hasta iterador == NULL
+	Aplicacion -> Iterador: obtenerID()
+	activate Iterador
+	return ID
+	alt ID > persistidos
+		Aplicacion -> Lista: buscar(ID)
+		activate Lista
+		return nuevo
+		Aplicacion -> Lista: mostrarCliente(nuevo)
+		activate Lista
+		return
+	else ID <= persistidos
+		Aplicacion -> FILE: fseek()
+		activate FILE
+		return exito?
+		create Cliente
+		Aplicacion -> Cliente: recuperarCliente(base)
+		activate Cliente
+		Cliente -> FILE: fread()
+		activate FILE
+		return cantidadLeidos
+		return cliente
+		Aplicacion -> Cliente: mostrarCliente(cliente)
+		activate Cliente
+		return
+		Aplicacion -> Cliente: borrarCliente(cliente)
+		destroy Cliente
+	end
+	Aplicacion -> Iterador: siguiente(iterador)
+	activate Iterador
+	return iterador
+end
+Aplicacion -> Iterador: borrarIterador()
+destroy Iterador
+	
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+participant Aplicacion
+participant "claves:Menu" as Menu
+participant "vista:Indice" as Vista
+participant "indice:Indice" as Indice
+
+Aplicacion -> Menu: activarMenu(claves)
+activate Menu
+return clave
+Aplicacion -> Aplicacion: formularioClaves(clave, minimo, maximo)
+Aplicacion -> Indice: obtenerVista(minimo, maximo)
+activate Indice
+create Vista
+Indice -> Vista: crearVista(indice, minimo, maximo)
+return vista
+
+@enduml
