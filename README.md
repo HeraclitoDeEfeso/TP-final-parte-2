@@ -43,6 +43,10 @@ DIA de MES, HORA Hs.
 2. [Recursos utilizados](#2-recursos-utilizados)
 3. [Detalles de implementación](#3-detalles-de-implementación)
    1. [Diagrama de Clases](#3i-diagrama-de-clases)
+   2. [Diagrama de Secuencia](#3ii-diagrama-de-secuencia)
+      1. [Alta de Cliente](#3iia-alta-de-cliente)
+      2. [Buscar Clientes](#3iib-buscar-clientes)
+      3. [Listar Clientes](#3iic-listar-clientes)
 4. [Conclusiones](#4-conclusiones)
 
 [Referencias](#referencias)
@@ -72,6 +76,20 @@ TODO:
 ### 3.i. Diagrama de Clases
 
 ![Diagrama de Clases](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/diagrama.puml)
+
+### 3.ii. Diagrama de Secuencia
+
+#### 3.ii.a Alta de Cliente 
+
+![Diagrama de Secuencia: Alta de Clientes](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/altacliente.puml)
+
+#### 3.ii.b Buscar Clientes
+
+![Diagrama de Secuencia: Buscar Clientes](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/buscarcliente.puml)
+
+#### 3.ii.c Listar Clientes
+
+![Diagrama de Secuencia: Listar Clientes](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/listarclientes.puml)
 
 ## 4. Conclusiones
 
