@@ -1,7 +1,7 @@
 @startuml
 
 package tp2 <<Folder>> {
-    class Aplicacion
+    class Aplicacion 
     class Indice
     class Cliente
     class Credito
@@ -20,12 +20,60 @@ package menu.h <<Folder>> {
     class Menu
 }
 
+class Aplicacion {
+	base: FILE
+	nuevos: Cliente[0..*]
+	indices: Indice[1..*]
+	persistidos: int
+	siguienteID: int
+	seleccionarCredito(Credito[0..3]): int
+	seleccionarOperacion(Credito): int
+	formularioMonto(Credito): int
+	formularioClaves(clave: enum, minimo: char[1..*], maximo: char[1..*])
+}
+
+class Cliente {
+	creditos: Credito[0..3]
+	mostrarCliente(self: Cliente): void
+	crearCliente(self: Cliente): Cliente
+	formularioCliente(self: Cliente): Cliente
+	recuperarCliente(self: Cliente, base: FILE): Cliente
+	guardarCliente(self: Cliente, base: FILE): void
+	borrarCliente(self: Cliente): void
+	esPosibleOtroCredito(self: Cliente): int
+	crearCreditoCliente(self: Cliente): Credito
+	borrarCreditoCliente(self: Cliente, credito: Credito): void
+}
+
+class Credito {
+	pagarCredito(self: Credito, monto: int): void
+	borrarCredito(self: Credito): void
+	mostrarCredito(self: Credito): void
+	formularioCredito(self: Credito): Credito
+	esNuloCredito(self: Credito): int
+}
+
+class Indice {
+	-estructura: AVL
+	obtenerVistaIndice(self: Indice, minimo: char[0..*], maximo: char[0..*]): Indice
+	agregarClaveIndice(self: Indice, clave: char[0..*], posicion: int): void
+	borrarClaveIndice(self: Indice, clave: char[0..*]): void
+	obtenerIterador(self: Indice): Iterador
+}
+
+class Iterador {
+	ID: int
+	crearIterador(indice: Indice, recorrido: enum Recorrido): Iterador
+	siguienteIterador(self: Iterador): Iterador
+	borrarIterador(self: Iterador)	
+}
+
 Aplicacion .left.> Menu
-Aplicacion ..> Indice
-Aplicacion ..> FILE
-Aplicacion ..> Cliente
+Aplicacion --> "[1..*]" Indice
+Aplicacion --> FILE
+Aplicacion --> "[0..*]" Cliente
 Aplicacion ..> Credito
-Cliente -left-o Credito
+Cliente o-left- "[0..3]" Credito
 Cliente ..> FILE
 Indice ..> FILE
 Indice *-down- AVL
