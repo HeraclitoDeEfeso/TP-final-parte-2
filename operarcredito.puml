@@ -1,0 +1,36 @@
+@startuml
+
+participant Aplicacion
+participant "cliente:Cliente" as Cliente
+collections "creditos:Credito" as Array
+participant "credito:Credito" as Credito
+
+ref over Aplicacion, Cliente: Listar Créditos
+activate Aplicacion
+Aplicacion -> Cliente: obtenerCreditos(cliente)
+activate Cliente
+return creditos
+Aplicacion -> Aplicacion: seleccionarCredito(creditos)
+activate Aplicacion
+return creditoSeleccionado
+Aplicacion -> Array: obtenerCredito(creditoSeleccionado)
+activate Array
+return credito
+Aplicacion -> Aplicacion: seleccionarOperacion(credito)
+activate Aplicacion
+return operacionSeleccionada
+alt operacionSeleccionada == PAGAR
+	Aplicacion -> Aplicacion: formularioMonto(credito)
+	activate Aplicacion
+	return monto
+	Aplicacion -> Credito: pagar(monto)
+	activate Credito
+	return credito
+else operacionSeleccionada == CANCELAR
+	Aplicacion -> Array: borrarCredito(credito)
+	activate Array
+	return
+end
+deactivate Aplicacion
+
+@enduml

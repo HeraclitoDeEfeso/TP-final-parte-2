@@ -1,0 +1,19 @@
+@startuml
+
+participant Aplicacion
+participant "cliente:Cliente" as Cliente
+collections "credito:Credito" as Array
+
+Aplicacion -> Cliente: mostrarCliente(cliente)
+activate Cliente
+return
+Aplicacion -> Cliente: obtenerCreditos(cliente)
+activate Cliente
+return creditos
+loop maxint = 3
+	Aplicacion -> Array: mostrarCredito(credito)
+	activate Array
+	return
+end
+	
+@enduml
