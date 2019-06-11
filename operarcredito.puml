@@ -5,7 +5,7 @@ participant "cliente:Cliente" as Cliente
 collections "creditos:Credito" as Array
 participant "credito:Credito" as Credito
 
-ref over Aplicacion, Cliente: Listar Créditos
+ref over Aplicacion, Cliente: Listar Creditos
 activate Aplicacion
 Aplicacion -> Cliente: obtenerCreditos(cliente)
 activate Cliente
