@@ -33,6 +33,12 @@ class Aplicacion {
 }
 
 class Cliente {
+	nombre: char
+ 	inicial: char
+	apellido: char
+	dni: int
+	edad: char
+	referencia: int
 	creditos: Credito[0..3]
 	mostrarCliente(self: Cliente): void
 	crearCliente(self: Cliente): Cliente
@@ -46,6 +52,8 @@ class Cliente {
 }
 
 class Credito {
+	fecha: int
+  	saldo: int
 	pagarCredito(self: Credito, monto: int): void
 	borrarCredito(self: Credito): void
 	mostrarCredito(self: Credito): void
