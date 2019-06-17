@@ -33,9 +33,9 @@ class Aplicacion {
 }
 
 class Cliente {
-	nombre: char
+	nombre: char[15]
  	inicial: char
-	apellido: char
+	apellido: char[15]
 	dni: int
 	edad: char
 	referencia: int
