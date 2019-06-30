@@ -8,7 +8,6 @@ typedef struct {
 } Credito;
 
 void pagarCredito(Credito *credito,int monto);
-void borrarCredito(Credito *credito);
 void mostrarCredito(Credito *credito);
 Credito *formularioCredito(Credito *credito);
 int esNuloCredito(Credito *credito);

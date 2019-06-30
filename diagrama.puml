@@ -1,7 +1,7 @@
 @startuml
 
 package tp2 <<Folder>> {
-    class Aplicacion 
+    class Aplicacion
     class Indice
     class Cliente
     class Credito
@@ -55,7 +55,6 @@ class Credito {
 	fecha: int
   	saldo: int
 	pagarCredito(self: Credito, monto: int): void
-	borrarCredito(self: Credito): void
 	mostrarCredito(self: Credito): void
 	formularioCredito(self: Credito): Credito
 	esNuloCredito(self: Credito): int
@@ -73,7 +72,7 @@ class Iterador {
 	ID: int
 	crearIterador(indice: Indice, recorrido: enum Recorrido): Iterador
 	siguienteIterador(self: Iterador): Iterador
-	borrarIterador(self: Iterador)	
+	borrarIterador(self: Iterador)
 }
 
 Aplicacion .left.> Menu
