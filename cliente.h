@@ -1,5 +1,7 @@
 #ifndef __CLIENTE__
 #define __CLIENTE__
+
+#include <stdio.h>
 #include "credito.h"
 #define MAX_CREDITOS 3
 
