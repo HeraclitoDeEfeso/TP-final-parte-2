@@ -7,9 +7,9 @@ typedef struct {
     int avl; //agregar un avl
 }Indice;
 
-Indice obtenerVistaIndice(Indice indice,char minimo[], char maximo[]);
-void agregarClaveIndice(Indice indice, char clave[],int  posicion);
-void borrarClaveIndice(Indice indice, char clave[] );
-struct Iterador obtenerIterador(Indice indice);
+Indice *obtenerVistaIndice(Indice *indice,char minimo[], char maximo[]);
+void agregarClaveIndice(Indice *indice, char clave[],int  posicion);
+void borrarClaveIndice(Indice *indice, char clave[] );
+struct Iterador obtenerIterador(Indice *indice);
 
 #endif //__INDICE__
