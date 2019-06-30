@@ -41,9 +41,9 @@ class Cliente {
 	referencia: int
 	creditos: Credito[0..3]
 	mostrarCliente(self: Cliente): void
-	crearCliente(self: Cliente): Cliente
+	crearCliente(): Cliente
 	formularioCliente(self: Cliente): Cliente
-	recuperarCliente(self: Cliente, base: FILE): Cliente
+	recuperarCliente(base: FILE): Cliente
 	guardarCliente(self: Cliente, base: FILE): void
 	borrarCliente(self: Cliente): void
 	esPosibleOtroCredito(self: Cliente): int

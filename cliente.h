@@ -1,6 +1,7 @@
 #ifndef __CLIENTE__
 #define __CLIENTE__
 #include "credito.h"
+#define MAX_CREDITOS 3
 
 typedef struct {
     int edad;
@@ -9,13 +10,14 @@ typedef struct {
     char apellido[15];
     char inicial;
     int referencia;
+    Credito creditos[MAX_CREDITOS];
 } Cliente;
 
-Cliente *crearCliente(Cliente *cliente);
+Cliente *crearCliente();
 void mostrarCliente(Cliente *cliente);
 Cliente *formularioCliente(Cliente *cliente);
-Cliente *recuperarCliente(Cliente *cliente);
-void guardarCliente(Cliente *cliente);
+Cliente *recuperarCliente(FILE *archivo);
+void guardarCliente(Cliente *cliente, FILE *archivo);
 void borrarCliente(Cliente *cliente);
 int esposibleOtroCredito(Cliente *cliente);
 Credito *crearCreditoCliente(Cliente *cliente);

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "cliente.h"
 
-Cliente *crearCliente(Cliente *cliente) {
-    return cliente;
+Cliente *crearCliente() {
+    return 0;
 }
 
 void mostrarCliente(Cliente *cliente){
@@ -13,11 +13,11 @@ Cliente *formularioCliente(Cliente *cliente){
     return cliente;
 }
 
-Cliente *recuperarCliente(Cliente *cliente){
-    return cliente;
+Cliente *recuperarCliente(FILE *archivo){
+    return 0;
 }
 
-void guardarCliente(Cliente *cliente){
+void guardarCliente(Cliente *cliente, FILE *archivo){
 }
 
 void borrarCliente(Cliente *cliente){
