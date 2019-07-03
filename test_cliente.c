@@ -15,7 +15,8 @@ void test_cliente()
 
 void test_crear_cliente_con_creditos_nulos()
 {
-    Cliente *miCliente = crearCliente();
+    char nombre[15] = {'m','a','t','i','a','s','\0'};
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
     int i;
     for(i = 0; i < MAX_CREDITOS; i++)
         assert(esNuloCredito(&(miCliente->creditos[i])));
@@ -24,7 +25,8 @@ void test_crear_cliente_con_creditos_nulos()
 void test_guardar_recuperar_cliente()
 {
     FILE *archivo = fopen("test_guardar_recuperar.bin", "w");
-    Cliente *miCliente = crearCliente();
+    char nombre[15] = {'m','a','t','i','a','s','\0'};
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
     miCliente->dni = 26803512;
     guardarCliente(miCliente, archivo);
     fclose(archivo);
