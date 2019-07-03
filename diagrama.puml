@@ -14,6 +14,7 @@ package stdio.h <<Folder>> {
 
 package avl.h <<Folder>> {
     class AVL
+    class Lista
 }
 
 package menu.h <<Folder>> {
@@ -61,31 +62,29 @@ class Credito {
 }
 
 class Indice {
-	-estructura: AVL
-	obtenerVistaIndice(self: Indice, minimo: char[0..*], maximo: char[0..*]): Indice
-	agregarClaveIndice(self: Indice, clave: char[0..*], posicion: int): void
-	borrarClaveIndice(self: Indice, clave: char[0..*]): void
-	obtenerIterador(self: Indice): Iterador
+    agregarClaveIndice(self: Indice, clave: Clave): Indice
+    borrarClaveIndice(self: Indice, clave: Clave): Indice
+    obtenerVistaMenorIndice(self: Indice, clave: Clave): Indice
+    obtenerVistaMayorIndice(self: Indice, clave: Clave): Indice
+    obtenerIterador(self: Indice): Iterador
 }
 
 class Iterador {
-	ID: int
-	crearIterador(indice: Indice, recorrido: enum Recorrido): Iterador
 	siguienteIterador(self: Iterador): Iterador
-	borrarIterador(self: Iterador)
 }
 
-Aplicacion .left.> Menu
-Aplicacion --> "[1..*]" Indice
-Aplicacion --> FILE
+Aplicacion .up.> Menu
+Aplicacion -left-> "[1..*]" Indice
+Aplicacion -up-> FILE
 Aplicacion --> "[0..*]" Cliente
 Aplicacion ..> Credito
 Cliente o-left- "[0..3]" Credito
-Cliente ..> FILE
+Cliente .up.> FILE
 Indice ..> FILE
-Indice *-down- AVL
-Indice .up.> Iterador
-Aplicacion .left.> Iterador
+Indice -up-|> AVL
+Indice +-down- Iterador
+Iterador -up-|> Lista
+Aplicacion ..> Iterador
 
 hide class circle
 

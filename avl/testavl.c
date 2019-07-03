@@ -357,5 +357,4 @@ void test_avl()
     testBalanceoDobleALaDerechaDespuesDeBorrar();
     testBalanceoDobleALaIzquierdaDespuesDeBorrar();
     testBorradoPrecisaDobleBalanceo();
-    return 0;
 }
