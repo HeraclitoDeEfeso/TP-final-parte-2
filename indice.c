@@ -1,8 +1,8 @@
 #include "indice.h"
 
-Indice *agregarClaveIndice(Indice *indice, void *clave, Comparador funcion){}
-Indice *borrarClaveIndice(Indice *indice, void *clave, Comparador funcion){}
-Indice *obtenerVistaMenorIndice(Indice *indice, void *clave, Comparador funcion){}
-Indice *obtenerVistaMayorIndice(Indice *indice, void *clave, Comparador funcion){}
-Iterador *obtenerIterador(Indice *indice){}
-Iterador *siguienteIterador(Iterador *iterador){}
+Indice *agregarClaveIndice(Indice *indice, void *clave, Comparador funcion){return 0;}
+Indice *borrarClaveIndice(Indice *indice, void *clave, Comparador funcion){return 0;}
+Indice *obtenerVistaMenorIndice(Indice *indice, void *clave, Comparador funcion){return 0;}
+Indice *obtenerVistaMayorIndice(Indice *indice, void *clave, Comparador funcion){return 0;}
+Iterador *obtenerIterador(Indice *indice){return 0;}
+void *siguienteIterador(Iterador **iterador){return 0;}

@@ -70,7 +70,7 @@ class Indice {
 }
 
 class Iterador {
-	siguienteIterador(self: Iterador): Iterador
+	siguienteIterador(self: Iterador): Clave
 }
 
 Aplicacion .up.> Menu

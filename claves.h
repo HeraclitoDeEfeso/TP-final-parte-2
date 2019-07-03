@@ -1,5 +1,6 @@
 #ifndef CLAVES_H_INCLUDED
 #define CLAVES_H_INCLUDED
+#include <stdio.h>
 #include "cliente.h"
 
 /**
