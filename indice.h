@@ -1,5 +1,6 @@
 #ifndef __INDICE__
 #define __INDICE__
+#include <stdio.h>
 #include "avl/avl.h"
 
 /**
@@ -21,6 +22,31 @@ typedef Arbol Indice;
  * directamente un sinónimo de Lista/Pila de subarboles.
  */
 typedef Lista Iterador;
+
+/**
+ * typedef Persistente: firma de función para persistir claves
+ * @clave: clave que se va a persistir en el archivo.
+ * @archivo: archivo en el cual se guardará la clave.
+ *
+ * Este tipo será utilizado para definir la firma del metodo
+ * encargado de persistir las claves en archivo. Precondiciones:
+ * el archivo ya estará abierto. Debe retornar un valor entero
+ * en la forma definida por la función standard `fwrite`: 1 para
+ * exito en la escritura de una clave, 0 para error.
+ */
+typedef int (*Persistente) (void* clave, FILE* archivo);
+
+/**
+ * typedef Recuperador: firma de función para recuperar un clave
+ * @direccionClave: dirección en memoria donde almacenar la clave.
+ * @archivo: archivo del cual se recuperará la clave.
+ *
+ * Este tipo será utilizado para definir la firma del metodo
+ * encargado de recuperar las claves de un archivo. Precondiciones:
+ * el archivo ya estará abierto y no habrá llegado al final. Debe
+ * retornar una clave.
+ */
+typedef int (*Recuperador) (void *direccionClave, FILE *archivo);
 
 /**
  * agregarClaveIndice() - Método para agregar una nueva clave al Indice.
@@ -86,6 +112,33 @@ Indice *obtenerVistaMenorIndice(Indice *indice, void *clave, Comparador funcion)
  * Return: un nuevo Indice sólo con las claves mayores a la clave.
  */
 Indice *obtenerVistaMayorIndice(Indice *indice, void *clave, Comparador funcion);
+
+/**
+ * persistirIndice() - Almacena el Indice en un archivo.
+ * @indice: Indice que se desea almacenar.
+ * @funcion: función para persistir claves.
+ * @archivo: archivo en el cual se desea almacenar el Indice.
+ *
+ * Método para almacena el Indice en un archivo. Precondición: el archivo
+ * ya ha sido abierto con exito para escribir en el; debe haber suficiente
+ * memoria en el medio de almacenamiento. Postcondicion: se escribirá en
+ * el archivo. El Indice nulo no posee consecuencias.
+ */
+void persistirIndice(Indice *indice, Persistente funcion, FILE* archivo);
+
+/**
+ * recuperarIndice() - Recupera un Indice almacenado en un archivo.
+ * @funcion: función para recuperar claves de un archivo.
+ * @archivo: archivo del cual se desea recuperar el Indice.
+ *
+ * Método para recuperar un Indice de un archivo. Precondición: el archivo
+ * ya ha sido abierto con exito para lectura desde la posición inicial; debe
+ * haber suficiente memoria para recrear el Indice. Postcondicion: se alocará
+ * memoria para reconstituir el Indice.
+ *
+ * Return: un nuevo Indice recuperado del archivo.
+ */
+Indice *recuperarIndice(Recuperador funcion, FILE* archivo);
 
 /**
  * obtenerIterador() - Método para obtener un Iterador en orden del Indice.

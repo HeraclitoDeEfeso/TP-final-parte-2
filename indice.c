@@ -80,3 +80,7 @@ Iterador *avanzarIterador(Iterador *iterador)
     }
     return iterador;
 }
+
+void persistirIndice(Indice *indice, Persistente funcion, FILE* archivo){}
+
+Indice *recuperarIndice(Recuperador funcion, FILE* archivo){return 0;}
