@@ -106,6 +106,42 @@ TODO:
 
 ![Diagrama de Secuencia: Operar Crédito](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/operarcredito.puml)
 
+#### 3.iii. Detalles de implementación
+
+#### Archivo [`aplicacion.c`](aplicacion.c)
+
+El archivo `app.c` contiene la implementación de la aplicación y de las funciones y módulos auxiliares.
+
+#### Archivo [`aplicacion.h`](aplicacion.h)
+
+#### Archivo [`claves.c`](claves.c)
+
+#### Archivo [`claves.h`](claves.h)
+
+#### Archivo [`cliente.c`](cliente.c)
+
+#### Archivo [`cliente.h`](cliente.h)
+
+#### Archivo [`credito.c`](credito.c)
+
+#### Archivo [`credito.h`](credito.h)
+
+#### Archivo [`indice.c`](indice.c)
+
+#### Archivo [`indice.h`](indice.h)
+
+#### AVL
+
+### 3.iv. Guía de Compilación
+
+Para compilar y correr los test en Code::Blocks abrir el proyecto `tp-p1.cbp` y seleccionar en la lista de "build target" la configuración `"Debug"` y presionar <kbd>F9</kbd>:
+
+![Debug buil target](Debug.png)
+
+Para compilar y correr la aplicación en Code::Blocks abrir el proyecto "tp-p1.cbp" y seleccionar en la lista de "build target" la configuración `"Release"` y presionar <kbd>F9</kbd>:
+
+![Release buil target](Release.png)
+
 ## 4. Conclusiones
 
 TODO:
