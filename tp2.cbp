@@ -87,6 +87,13 @@
 		<Unit filename="test_credito.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="test_indice.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test_indice.h">
+			<Option target="Debug" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

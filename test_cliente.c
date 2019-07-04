@@ -11,7 +11,7 @@ void test_cliente()
     test_es_posible_credito_de_cliente_nuevo();
     test_no_es_posible_credito_despues_del_maximo();
     test_borrar_credito();
-    test_no_es_posible_borrar_credito_ajeno();
+//    test_no_es_posible_borrar_credito_ajeno(); // Se comenta porque ahora el criterio es por valor
 }
 
 void test_crear_cliente_con_creditos_nulos()
