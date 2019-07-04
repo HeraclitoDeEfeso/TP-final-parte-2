@@ -20,7 +20,7 @@ typedef Arbol Indice;
  * implementado como Árbol AVL. Como no posee otro atributo es
  * directamente un sinónimo de Lista/Pila de subarboles.
  */
-typedef Lista *Iterador;
+typedef Lista Iterador;
 
 /**
  * agregarClaveIndice() - Método para agregar una nueva clave al Indice.
