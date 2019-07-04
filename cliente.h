@@ -15,7 +15,7 @@ typedef struct {
     Credito *creditos[MAX_CREDITOS];
 } Cliente;
 
-Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],char inicial,int referencia);
+Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],int referencia);
 void mostrarCliente(Cliente *cliente);
 Cliente *formularioCliente(Cliente *cliente);
 Cliente *recuperarCliente(FILE *archivo);

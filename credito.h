@@ -12,6 +12,5 @@ void pagarCredito(Credito *credito,int monto);
 void mostrarCredito(Credito *credito);
 Credito *formularioCredito(Credito *credito);
 int esNuloCredito(Credito *credito);
-void borrarCredito(Credito *credito);
 
 #endif //__CREDITO__
