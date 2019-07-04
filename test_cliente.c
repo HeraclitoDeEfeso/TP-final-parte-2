@@ -17,23 +17,23 @@ void test_cliente()
 void test_crear_cliente_con_creditos_nulos()
 {
     char nombre[15] = "Matias\0";
-    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     int i;
     for(i = 0; i < MAX_CREDITOS; i++)
-        assert(esNuloCredito((miCliente->creditos[i])));
+        assert(esNuloCredito(&(miCliente->creditos[i])));
 }
 
 void test_es_posible_credito_de_cliente_nuevo()
 {
     char nombre[15] = "Matias\0";
-    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     assert(esposibleOtroCredito(miCliente));
 }
 
 void test_no_es_posible_credito_despues_del_maximo()
 {
     char nombre[15] = "Matias\0";
-    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
         crearCreditoCliente(miCliente, 20010101, 1000 + i);
@@ -44,7 +44,7 @@ void test_no_es_posible_credito_despues_del_maximo()
 void test_borrar_credito()
 {
     char nombre[15] = "Matias\0";
-    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
@@ -58,9 +58,9 @@ void test_borrar_credito()
 void test_no_es_posible_borrar_credito_ajeno()
 {
     char nombre[15] = "Matias\0";
-    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     char nombreOtro[15] = "Martin\0";
-    Cliente *otroCliente = crearCliente(25,38222000,nombreOtro,nombreOtro,'m',0);
+    Cliente *otroCliente = crearCliente(25,38222000,nombreOtro,nombreOtro,0);
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
@@ -74,7 +74,7 @@ void test_no_es_posible_borrar_credito_ajeno()
 void test_guardar_recuperar_cliente()
 {
     FILE *archivo = fopen("test_guardar_recuperar.bin", "w");
-    Cliente miCliente = { 22, 40111222, "Ernesto", "Pascuale", 'M', 0};
+    Cliente miCliente = { 22, 40111222, "Ernesto", "Pascuale", 0};
     Cliente *clienteRecuperado;
     int i;
     guardarCliente(&miCliente, archivo);
@@ -84,8 +84,8 @@ void test_guardar_recuperar_cliente()
     fclose(archivo);
     assert(strcmp(clienteRecuperado->apellido, miCliente.apellido) == 0);
     for(i = 0; i < MAX_CREDITOS; i++)
-        assert(clienteRecuperado->creditos[i]->fecha == miCliente.creditos[i]->fecha
-               && clienteRecuperado->creditos[i]->saldo == miCliente.creditos[i]->saldo);
+        assert(clienteRecuperado->creditos[i].fecha == miCliente.creditos[i].fecha
+               && clienteRecuperado->creditos[i].saldo == miCliente.creditos[i].saldo);
     assert(clienteRecuperado->dni == miCliente.dni);
     assert(clienteRecuperado->edad == miCliente.edad);
     assert(clienteRecuperado->inicial == miCliente.inicial);
