@@ -61,15 +61,18 @@ class Credito {
 }
 
 class Indice {
-    agregarClaveIndice(self: Indice, clave: Clave): Indice
-    borrarClaveIndice(self: Indice, clave: Clave): Indice
-    obtenerVistaMenorIndice(self: Indice, clave: Clave): Indice
-    obtenerVistaMayorIndice(self: Indice, clave: Clave): Indice
+    agregarClaveIndice(self: Indice, c: Clave, func: Comparador): Indice
+    borrarClaveIndice(self: Indice, c: Clave, func: Comparador): Indice
+    obtenerVistaMenorIndice(self: Indice, c: Clave, func: Comparador): Indice
+    obtenerVistaMayorIndice(self: Indice, c: Clave, func: Comparador): Indice
     obtenerIterador(self: Indice): Iterador
+    persistirIndice(self: Indice, func: Persistente, f: FILE): void
+    recuperarIndice(Recuperador recuperar, f: FILE): Indice
 }
 
 class Iterador {
-	siguienteIterador(self: Iterador): Clave
+    siguienteIterador(self: Iterador): Clave
+    -avanzarIterador(self: Iterador): Iterador
 }
 
 Aplicacion .up.> Menu
