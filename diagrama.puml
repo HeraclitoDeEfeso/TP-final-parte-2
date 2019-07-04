@@ -38,15 +38,14 @@ class Cliente {
  	inicial: char
 	apellido: char[15]
 	dni: int
-	edad: char
+	int: char
 	referencia: int
 	creditos: Credito[0..3]
 	mostrarCliente(self: Cliente): void
-	crearCliente(): Cliente
+	crearCliente(int:edad,int:dni,char: nombre,char:apellido,int:referencia): Cliente
 	formularioCliente(self: Cliente): Cliente
 	recuperarCliente(base: FILE): Cliente
 	guardarCliente(self: Cliente, base: FILE): void
-	borrarCliente(self: Cliente): void
 	esPosibleOtroCredito(self: Cliente): int
 	crearCreditoCliente(self: Cliente): Credito
 	borrarCreditoCliente(self: Cliente, credito: Credito): void

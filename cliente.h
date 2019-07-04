@@ -5,10 +5,11 @@
 #include "credito.h"
 #define MAX_CREDITOS 3
 
-
-/*El struct cliente contiene toda la informacion del cliente necesaria para la aplicacion,
- ademas contiene una cantidad de creditos variables ya que estan definidos por una constante*/
-
+/**
+ * typedef Cliente:
+ *
+ * Este tipo será utilizado para almacenar y modificar la informacion de los clientes.
+ */
 typedef struct {
     int edad;
     int dni;
@@ -19,30 +20,79 @@ typedef struct {
     Credito creditos[MAX_CREDITOS];
 } Cliente;
 
-/*Crea un cliente con los datos ingresados por parametro y sus creditos disponibles y devuelve un puntero hacia el*/
+/**
+ * crearCliente() - crea un cliente.
+ * @edad: edad del cliente.
+ * @dni: dni del cliente.
+ * @nombre: cadena de char de tamaño 15 que indica el nombre del cliente.
+ * @apellido: cadena de char de tamaño 15 que indica el apellido del cliente.
+ * @referencia: entero que permite encontrar a un referente.
+ * Método que crea un cliente con los datos especificados en su parametro.
+ *
+ * return: devuelve un puntero al cliente creado
+ */
 Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],int referencia);
 
-/*Imprime en pantalla la informacion del cliente*/
+/**
+ * mostrarCliente() - muestra un cliente.
+ * @cliente: cliente que se desea mostrar.
+ * Método imprime en pantalla la informacion del cliente.
+ */
 void mostrarCliente(Cliente *cliente);
 
-/*Le pide al usuario que complete los datos necesarios del nuevo cliente, utilza la funcion crearCliente() para crearlo
-y devuelve un puntero hacia el nuevo cliente*/
-Cliente *formularioCliente();
+/**
+ * formularioCliente() - modifica o crea un cliente.
+ * @cliente: cliente que sera modificado
+ * Método que modifica/crea un cliente segun los datos que ponga el usuaria en la aplicacion
+ * luego de que esta se los solicite
+ *
+ * return: devuelve un puntero al cliente creado
+ */
+Cliente *formularioCliente(Cliente *cliente);
 
-/*Recupera la informacion de un cliente de un archivo que es ingresado por parametro, y devuelve un puntero de cliente con esa informacion*/
+/**
+ * recuperarCliente() - levanta la informacion de un cliente del archivo.
+ * @archivo: archivo que sera leido.
+ * Método para recuperar la informacion de un cliente del archivo especificado.
+ *
+ * return: devuelve un puntero al cliente recuperado del archivo.
+ */
 Cliente *recuperarCliente(FILE *archivo);
 
-/*Guarda la informacion de un cliente en un archivo que es ingresado por parametro*/
+/**
+ * guardarCliente() - guarda la informacion de un cliente en el archivo.
+ * @archivo: archivo que sera escrito.
+ * Método para guardar la informacion de un cliente en el archivo especificado.
+ */
 void guardarCliente(Cliente *cliente, FILE *archivo);
 
-/*Funcion que permite saber si un cliente ya pidio todos sus creditos disponibles o puede pedir otro*/
+/**
+ * esposibleOtroCredito() - dice si es posible crear otro credito.
+ * @cliente: cliente del cual se desea saber si puede sacar otro credito
+ * Método para chequear si el cliente alcanzo su maximo de creditos disponibles
+ *
+ * return: devuelve un entero que indicara si hay espacio para un nuevo credito
+ */
 int esposibleOtroCredito(Cliente *cliente);
 
-/*Crea un credito en el cliente especificado con los datos ingresados por parametros, no se debe ingresar dos creditos con los mismos datos
-y debe haber creditos desiponibles para ser usados, devuelve un puntero al credito otorgado*/
+/**
+ * crearCreditoCliente() - crea un credito para un cliente.
+ * @cliente: cliente que obtendra el credito.
+ * @fecha: fecha de inicio del credito.
+ * @monto: deuda a pagar del credito.
+ * Método para crear un nuevo credito en el cliente especificado en el cual ya se chequeo que tiene un
+ * credito disponible.
+ * return: devuelve un puntero del credito creado
+ */
 Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto);
 
-/*Borra los datos del credito del cliente especificado por parametros*/
+/**
+ * borrarCreditoCliente() - borra un credito de un cliente.
+ * @cliente: dueño del credito que sera borrado
+ * @credito: credito que sera borrado.
+ * Método para cancelar un credito de un cliente especificado en el parametro, que deja
+ * un credito disponible para que pueda realizar el cliente.
+ */
 void borrarCreditoCliente(Cliente *cliente, Credito *credito);
 
 #endif //__CLIENTE__

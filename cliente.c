@@ -29,8 +29,7 @@ void mostrarCliente(Cliente *cliente){
     //printf("CREDITOS")
 }
 
-Cliente *formularioCliente(){
-    Cliente *cliente = malloc(sizeof(Cliente));
+Cliente *formularioCliente(Cliente *cliente){
     int edad;
     int dni;
     char nombre[15];
