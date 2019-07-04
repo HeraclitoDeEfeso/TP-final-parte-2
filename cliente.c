@@ -65,12 +65,6 @@ void guardarCliente(Cliente *cliente, FILE *archivo){
     else printf("el archivo no es valido");
 }
 
-
-void borrarCliente(Cliente *cliente){
-//---------------------------
-// borrar del File y el arbol?
-}
-
 int esposibleOtroCredito(Cliente *cliente){
     return esNuloCredito(&(cliente->creditos[MAX_CREDITOS -1]));
 }
@@ -95,7 +89,7 @@ void borrarCreditoCliente(Cliente *cliente, Credito *credito){
     int i;
     for(i=0;i < MAX_CREDITOS; i++){
         //no deberia haber dos creditos con misma fecha y saldo
-        if(memcmp(&(cliente->creditos[i]),credito,malloc(sizeof(credito)))){
+        if(cliente->creditos[i].fecha == credito->fecha && cliente->creditos[i].saldo == credito->saldo){
             borrarCredito(&(cliente->creditos[i]));
         }
     }
