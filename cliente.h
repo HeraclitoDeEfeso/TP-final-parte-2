@@ -22,7 +22,7 @@ Cliente *recuperarCliente(FILE *archivo);
 void guardarCliente(Cliente *cliente, FILE *archivo);
 void borrarCliente(Cliente *cliente);
 int esposibleOtroCredito(Cliente *cliente);
-Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto);
-void borrarCreditoCliente(Cliente *cliente, Credito *credito);//Aca deberiamos analizar si es conveniente permitir pagar parte del credito en vez de anularlo
+Credito crearCreditoCliente(Cliente *cliente, int fecha, int monto);
+void borrarCreditoCliente(Cliente *cliente, Credito credito);//Aca deberiamos analizar si es conveniente permitir pagar parte del credito en vez de anularlo
 
 #endif //__CLIENTE__
