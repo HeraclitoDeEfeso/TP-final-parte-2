@@ -20,7 +20,7 @@ void test_crear_cliente_con_creditos_nulos()
     Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     int i;
     for(i = 0; i < MAX_CREDITOS; i++)
-        assert(esNuloCredito((miCliente->creditos[i])));
+        assert(esNuloCredito(&(miCliente->creditos[i])));
 }
 
 void test_es_posible_credito_de_cliente_nuevo()
@@ -84,8 +84,8 @@ void test_guardar_recuperar_cliente()
     fclose(archivo);
     assert(strcmp(clienteRecuperado->apellido, miCliente.apellido) == 0);
     for(i = 0; i < MAX_CREDITOS; i++)
-        assert(clienteRecuperado->creditos[i]->fecha == miCliente.creditos[i]->fecha
-               && clienteRecuperado->creditos[i]->saldo == miCliente.creditos[i]->saldo);
+        assert(clienteRecuperado->creditos[i].fecha == miCliente.creditos[i].fecha
+               && clienteRecuperado->creditos[i].saldo == miCliente.creditos[i].saldo);
     assert(clienteRecuperado->dni == miCliente.dni);
     assert(clienteRecuperado->edad == miCliente.edad);
     assert(clienteRecuperado->inicial == miCliente.inicial);

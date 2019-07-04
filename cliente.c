@@ -15,10 +15,10 @@ Cliente *crearCliente(int edad, int dni, char nombre[15], char apellido[15], int
     cliente->referencia = referencia;
     int i;
     for(i = 0; i < MAX_CREDITOS; i++){
-        Credito *credito = malloc(sizeof(Credito));;
+        Credito credito;
         cliente->creditos[i] = credito;
-        cliente->creditos[i]->fecha = 0;
-        cliente->creditos[i]->saldo = 0;
+        cliente->creditos[i].fecha = 0;
+        cliente->creditos[i].saldo = 0;
     }
     return cliente;
 }
@@ -33,7 +33,6 @@ Cliente *formularioCliente(Cliente *cliente){
     int dni;
     char nombre[15];
     char apellido[15];
-    char inicial;
     int referencia;
     //--------------------------------
     //se deberian testear los datos ingresados para ver si son correctos
@@ -51,11 +50,22 @@ Cliente *formularioCliente(Cliente *cliente){
 }
 
 Cliente *recuperarCliente(FILE *archivo){
-    return 0;
+    Cliente *cliente = malloc(sizeof(Cliente));
+    if(archivo){
+        Cliente *cliente = malloc(sizeof(Cliente));
+        fread(cliente,sizeof(Cliente),1,archivo);
+    }
+    else printf("el archivo no es valido");
+    return cliente;
 }
 
 void guardarCliente(Cliente *cliente, FILE *archivo){
+    if(archivo){
+        fwrite(cliente,sizeof(Cliente),1,archivo);
+    }
+    else printf("el archivo no es valido");
 }
+
 
 void borrarCliente(Cliente *cliente){
 //---------------------------
@@ -63,18 +73,17 @@ void borrarCliente(Cliente *cliente){
 }
 
 int esposibleOtroCredito(Cliente *cliente){
-    return esNuloCredito(cliente->creditos[MAX_CREDITOS -1]);
+    return esNuloCredito(&(cliente->creditos[MAX_CREDITOS -1]));
 }
 
 Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto){
     int i = 0;
     int sigo = 1;
-    Credito *credito;
-    while(sigo && i < MAX_CREDITOS){
-        if(esNuloCredito(cliente->creditos[i])){
-            credito->fecha = fecha;
-            credito->saldo = monto;
-            cliente->creditos[i] = credito;
+    Credito *credito = malloc(sizeof(Credito));
+    while(sigo){
+        if(esNuloCredito(&(cliente->creditos[i]))){
+            cliente->creditos[i].fecha = fecha;
+            cliente->creditos[i].saldo = monto;
             sigo = 0;
         }
         else i++;
@@ -86,8 +95,8 @@ void borrarCreditoCliente(Cliente *cliente, Credito *credito){
     int i;
     for(i=0;i < MAX_CREDITOS; i++){
         //no deberia haber dos creditos con misma fecha y saldo
-       if ((credito->fecha == cliente->creditos[i]->fecha) && credito->saldo == cliente->creditos[i]->saldo){
-            borrarCredito(cliente->creditos[i]);
+       if ((credito->fecha == cliente->creditos[i].fecha) && credito->saldo == cliente->creditos[i].saldo){
+            borrarCredito(&(cliente->creditos[i]));
         }
     }
 }
