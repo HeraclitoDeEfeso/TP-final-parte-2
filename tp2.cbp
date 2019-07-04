@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Trabajo Practico 2" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Trabajo Practico 2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Trabajo Practico 2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="aplicacion.c">
+			<Option compilerVar="CC" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="aplicacion.h">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="avl/avl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="avl/avl.h" />
+		<Unit filename="avl/lista.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="avl/lista.h" />
+		<Unit filename="avl/test_avl.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="avl/testavl.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="claves.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="claves.h" />
+		<Unit filename="cliente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cliente.h" />
+		<Unit filename="credito.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="credito.h" />
+		<Unit filename="indice.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="indice.h" />
+		<Unit filename="test.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test_cliente.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test_cliente.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test_credito.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test_credito.h">
+			<Option target="Debug" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
