@@ -5,14 +5,15 @@
 void pagarCredito(Credito *credito,int monto){
     if(monto <= credito->saldo && monto > 0){
          credito->saldo = credito->saldo - monto;
+         if(credito->saldo ==0){
+            borrarCredito(credito);
+         }
     }
-    //modificar File
 }
 
 void borrarCredito(Credito *credito){
     credito->saldo = 0;
     credito->fecha = 0;
-    //modificar File
 }
 
 void mostrarCredito(Credito *credito){
@@ -33,8 +34,6 @@ Credito *formularioCredito(Credito *credito){
         printf("el monton del credito no es valido");
         credito = formularioCredito(credito);
     }
-    //---------------------------------------------
-    //analizar ingresio de fecha
     else if(fecha == 0 ){
         printf("la fecha del credito no es valida");
         credito = formularioCredito(credito);
