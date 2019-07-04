@@ -4,7 +4,7 @@
 #include "cliente.h"
 
 Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],char inicial,int referencia) {
-    Cliente *cliente;
+    Cliente *cliente = malloc(sizeof(Cliente));
     cliente->edad = edad;
     cliente->dni = dni;
     memcpy(cliente->nombre, nombre,15);
@@ -13,7 +13,7 @@ Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],char 
     cliente->referencia = referencia;
     int i;
     for(i = 0; i < MAX_CREDITOS; i++){
-        Credito *credito;
+        Credito *credito = malloc(sizeof(Credito));
         cliente->creditos[i] = credito;
         cliente->creditos[i]->fecha = 0;
         cliente->creditos[i]->saldo = 0;
@@ -47,11 +47,11 @@ Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto){
     int i = 0;
     int sigo = 1;
     Credito *credito;
-    while(sigo && i < MAX_CREDITOS){
-        if(esNuloCredito(cliente->creditos[i])){
+    while (sigo && i < MAX_CREDITOS) {
+        credito = cliente->creditos[i];
+        if (esNuloCredito(credito)) {
             credito->fecha = fecha;
             credito->saldo = monto;
-            cliente->creditos[i] = credito;
             sigo = 0;
         }
         else i++;
