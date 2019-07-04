@@ -5,7 +5,6 @@
 
 /**
  * typedef Clave: TAD que representa la Clave de un Cliente
- * @cliente: enlace al Cliente en caso de modificación (no es clave).
  * @posicion: posición del registro Cliente en el archivo (no es clave).
  * @edad: edad del Cliente y clave secundaria.
  * @apellido: apellido del Cliente y clave primaria.
@@ -16,10 +15,9 @@
  * persistencia y recuperación del Indice.
  */
 typedef struct {
-    Cliente *cliente;
     int posicion;
     int edad;
-    char *apellido;
+    char apellido[15];
 } Clave;
 
 int compararClave(void *clave1, void *clave2);

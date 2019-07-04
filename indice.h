@@ -107,12 +107,29 @@ Iterador *obtenerIterador(Indice *indice);
  * Método para obtener la siguiente clave en la iteracion de un Indice.
  * Precondición: el Indice no debe modificarse durante la iteración; memoria
  * suficiente para modificar la estructura con la que se haya implementado el
- * Iterador del Indice. Postcondicion: se liberará y alocará la memoria
- * suficiente para la estructura que implementa el Iterador; el Iterador
- * se modificará.
+ * Iterador del Indice; no deben ingresarse datos nulos como claves.
+ * Postcondicion: se liberará y alocará la memoria suficiente para la
+ * estructura que implementa el Iterador; el Iterador se modificará.
  *
  * Return: una clave.
  */
 void *siguienteIterador(Iterador **iterador);
+
+/* Métodos privados */
+
+/**
+ * avanzarIterador() - Coloca en el Iterador/Pila/Lista el siguiente subArbol.
+ * @iterador: Iterador que recorre el Indice.
+ *
+ * Coloca en el Iterador/Pila/Lista el siguiente subArbol a recorrer. Se
+ * separa de `siguienteIterador` sólo con el objetivo de claridad en el
+ * código. Precondición: memoria suficiente para tantos nodos lista como
+ * nodos arbol que falten recorrer. Postcondicion: se liberará y alocará
+ * memoria suficiente para la estructura de Lista. El Iterador nulo no
+ * tiene consecuencias.
+ *
+ * Return: un nuevo Iterador con el siguiente nodo Arbol en la cabecera.
+ */
+Iterador *avanzarIterador(Iterador *iterador);
 
 #endif //__INDICE__
