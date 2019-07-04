@@ -52,7 +52,6 @@ Cliente *formularioCliente(Cliente *cliente){
 Cliente *recuperarCliente(FILE *archivo){
     Cliente *cliente = malloc(sizeof(Cliente));
     if(archivo){
-        Cliente *cliente = malloc(sizeof(Cliente));
         fread(cliente,sizeof(Cliente),1,archivo);
     }
     else printf("el archivo no es valido");
@@ -80,10 +79,11 @@ Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto){
     int i = 0;
     int sigo = 1;
     Credito *credito = malloc(sizeof(Credito));
+    credito->fecha = fecha;
+    credito->saldo = monto;
     while(sigo){
         if(esNuloCredito(&(cliente->creditos[i]))){
-            cliente->creditos[i].fecha = fecha;
-            cliente->creditos[i].saldo = monto;
+            cliente->creditos[i] = *credito;
             sigo = 0;
         }
         else i++;
@@ -95,7 +95,7 @@ void borrarCreditoCliente(Cliente *cliente, Credito *credito){
     int i;
     for(i=0;i < MAX_CREDITOS; i++){
         //no deberia haber dos creditos con misma fecha y saldo
-       if ((credito->fecha == cliente->creditos[i].fecha) && credito->saldo == cliente->creditos[i].saldo){
+        if(memcmp(&(cliente->creditos[i]),credito,malloc(sizeof(credito)))){
             borrarCredito(&(cliente->creditos[i]));
         }
     }
