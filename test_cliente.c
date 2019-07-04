@@ -34,7 +34,7 @@ void test_no_es_posible_credito_despues_del_maximo()
 {
     char nombre[15] = "Matias\0";
     Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
-    Credito unCredito;
+    Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
         unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
@@ -46,7 +46,7 @@ void test_borrar_credito()
 {
     char nombre[15] = "Matias\0";
     Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
-    Credito unCredito;
+    Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
         unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
@@ -62,7 +62,7 @@ void test_no_es_posible_borrar_credito_ajeno()
     Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
     char nombreOtro[15] = "Martin\0";
     Cliente *otroCliente = crearCliente(21,40653669,nombre,nombre,'m',0);
-    Credito unCredito;
+    Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
         unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
@@ -85,8 +85,8 @@ void test_guardar_recuperar_cliente()
     fclose(archivo);
     assert(strcmp(clienteRecuperado->apellido, miCliente.apellido) == 0);
     for(i = 0; i < MAX_CREDITOS; i++)
-        assert(clienteRecuperado->creditos[i].fecha == miCliente.creditos[i].fecha
-               && clienteRecuperado->creditos[i].saldo == miCliente.creditos[i].saldo);
+        assert(clienteRecuperado->creditos[i]->fecha == miCliente.creditos[i]->fecha
+               && clienteRecuperado->creditos[i]->saldo == miCliente.creditos[i]->saldo);
     assert(clienteRecuperado->dni == miCliente.dni);
     assert(clienteRecuperado->edad == miCliente.edad);
     assert(clienteRecuperado->inicial == miCliente.inicial);

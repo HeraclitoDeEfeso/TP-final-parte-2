@@ -13,10 +13,10 @@ Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],char 
     cliente->referencia = referencia;
     int i;
     for(i = 0; i < MAX_CREDITOS; i++){
-        Credito credito;
+        Credito *credito;
         cliente->creditos[i] = credito;
-        cliente->creditos[i].fecha = 0;
-        cliente->creditos[i].saldo = 0;
+        cliente->creditos[i]->fecha = 0;
+        cliente->creditos[i]->saldo = 0;
     }
     return cliente;
 }
@@ -43,14 +43,14 @@ int esposibleOtroCredito(Cliente *cliente){
     return 0; //esNuloCredito(cliente->creditos[MAX_CREDITOS -1]);
 }
 
-Credito crearCreditoCliente(Cliente *cliente, int fecha, int monto){
+Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto){
     int i = 0;
     int sigo = 1;
-    Credito credito;
+    Credito *credito;
     while(sigo && i < MAX_CREDITOS){
         if(esNuloCredito(cliente->creditos[i])){
-            credito.fecha = fecha;
-            credito.saldo = monto;
+            credito->fecha = fecha;
+            credito->saldo = monto;
             cliente->creditos[i] = credito;
             sigo = 0;
         }
@@ -59,11 +59,11 @@ Credito crearCreditoCliente(Cliente *cliente, int fecha, int monto){
     return credito;
 }
 
-void borrarCreditoCliente(Cliente *cliente, Credito credito){
+void borrarCreditoCliente(Cliente *cliente, Credito *credito){
     int i;
     for(i=0;i < MAX_CREDITOS; i++){
         //no deberia haber dos creditos con misma fecha y saldo
-       if ((credito.fecha == cliente->creditos[i].fecha) && credito.saldo == cliente->creditos[i].saldo){
+       if ((credito->fecha == cliente->creditos[i]->fecha) && credito->saldo == cliente->creditos[i]->saldo){
             borrarCredito(cliente->creditos[i]);
         }
     }
