@@ -24,18 +24,18 @@ Cliente *crearCliente(int edad, int dni, char nombre[15], char apellido[15], int
 }
 
 void mostrarCliente(Cliente *cliente){
-    printf("\nNombre del cliente: %s+" "+%s\nDocumento: %i\nEdad: %i\nReferencia: %i",
+    printf("\nNombre del cliente: %s %s\nDocumento: %i\nEdad: %i\nReferencia: %i",
            cliente->nombre,cliente->apellido, cliente->dni, cliente->edad,cliente->referencia);
+    //printf("CREDITOS")
 }
 
-Cliente *formularioCliente(Cliente *cliente){
+Cliente *formularioCliente(){
+    Cliente *cliente = malloc(sizeof(Cliente));
     int edad;
     int dni;
     char nombre[15];
     char apellido[15];
     int referencia;
-    //--------------------------------
-    //se deberian testear los datos ingresados para ver si son correctos
     printf("Edad del cliente: ");
     scanf("%i", &edad);
     printf("dni : ");
@@ -46,6 +46,7 @@ Cliente *formularioCliente(Cliente *cliente){
     scanf("%s", &apellido);
     printf("Referencia : ");
     scanf("%i", &referencia);
+    cliente = crearCliente(edad, dni, nombre, apellido, referencia);
     return cliente;
 }
 
