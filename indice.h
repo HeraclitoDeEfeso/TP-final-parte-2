@@ -30,23 +30,23 @@ typedef Lista Iterador;
  *
  * Este tipo será utilizado para definir la firma del metodo
  * encargado de persistir las claves en archivo. Precondiciones:
- * el archivo ya estará abierto. Debe retornar un valor entero
- * en la forma definida por la función standard `fwrite`: 1 para
- * exito en la escritura de una clave, 0 para error.
+ * el archivo ya estará abierto.
+ *
+ * Return: un entero como `fwrite`: 1 es exito, 0 es error.
  */
-typedef int (*Persistente) (void* clave, FILE* archivo);
+typedef int (*Persistente) (void *clave, FILE* archivo);
 
 /**
- * typedef Recuperador: firma de función para recuperar un clave
- * @direccionClave: dirección en memoria donde almacenar la clave.
+ * typedef Recuperador: firma de función para recuperar una clave
+ * @direccionClave: dirección en memoria de la clave que se quiere recuperar.
  * @archivo: archivo del cual se recuperará la clave.
  *
  * Este tipo será utilizado para definir la firma del metodo
  * encargado de recuperar las claves de un archivo. Precondiciones:
- * el archivo ya estará abierto y no habrá llegado al final. Debe
- * retornar una clave.
+ * el archivo ya estará abierto y no habrá llegado al final; hay
+ * suficiente memoria para reconstituir la clave.
  */
-typedef int (*Recuperador) (void *direccionClave, FILE *archivo);
+typedef void (*Recuperador) (void **clave, FILE *archivo);
 
 /**
  * agregarClaveIndice() - Método para agregar una nueva clave al Indice.
@@ -168,7 +168,22 @@ Iterador *obtenerIterador(Indice *indice);
  */
 void *siguienteIterador(Iterador **iterador);
 
-/* Métodos privados */
+/* Métodos y Tipos privados */
+
+/**
+ * enum HijosArbol - Enumeración de la posesión de hijos de un nodo Arbol.
+ * @SIN_HIJOS: El nodo no tiene hijos.
+ * @HIJO_IZQ: El nodo sólo tiene un hijo en la rama izquierda.
+ * @HIJO_DER: El nodo sólo tiene un hijo en la rama derecha.
+ * @DOS_HIJOS: El nodo tiene hijos en ambas ramas izquierda.
+ *
+ * Enumeración que describe los distintos casos para la posesión de hijos
+ * por un sub Arbol, Arbol unitario o nodo de un Arbol. Será utilizado
+ * para la persistencia del Indice implementado como Arbol AVL de manera
+ * de evitar o bien persistir claves nulas en archivo o bien utilizar la
+ * funcion comparadora de claves con cada clave recuperada.
+ */
+ enum HijosArbol {SIN_HIJOS, HIJO_IZQ, HIJO_DER, DOS_HIJOS};
 
 /**
  * avanzarIterador() - Coloca en el Iterador/Pila/Lista el siguiente subArbol.

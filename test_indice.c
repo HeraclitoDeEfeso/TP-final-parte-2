@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
 #include "test_indice.h"
 #include "indice.h"
 
@@ -23,9 +24,11 @@ int persistirClave(void *clave, FILE *archivo)
     return fwrite(&valor, sizeof(int), 1, archivo);
 }
 
-int recuperarClave(void *punteroClave, FILE *archivo)
+void recuperarClave(void **clave, FILE *archivo)
 {
-    return fread(punteroClave, sizeof(int), 1, archivo);
+    int valor;
+    fread(&valor, sizeof(int), 1, archivo);
+    *clave = (void*) valor;
 }
 
 void mostrarArbolIndice(Arbol *arbol, int level)
@@ -122,10 +125,10 @@ void test_persistencia_indice()
     FILE *archivo;
     for (; i < sizeof(ingresados) / sizeof(int); i++)
         original = agregarClaveIndice(original, (void*) ingresados[i], &compararIndice);
-    archivo = fopen("test_persistencia_indice.bin", "w");
+    archivo = fopen("test_persistencia_indice.bin", "wb");
     persistirIndice(original, &persistirClave, archivo);
     fclose(archivo);
-    archivo = fopen("test_persistencia_indice.bin", "r");
+    archivo = fopen("test_persistencia_indice.bin", "rb");
     recuperado = recuperarIndice(&recuperarClave, archivo);
     fclose(archivo);
     assert(sonIgualesIndice(original, recuperado));
