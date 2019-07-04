@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "credito.h"
 
-
 void pagarCredito(Credito *credito,int monto){
     if(monto <= credito->saldo && monto > 0){
          credito->saldo = credito->saldo - monto;

@@ -4,7 +4,7 @@
 #include "cliente.h"
 
 Cliente *crearCliente(int edad, int dni, char nombre[15], char apellido[15], int referencia) {
-    Cliente *cliente;
+    Cliente *cliente = malloc(sizeof(Cliente));
     cliente->edad = edad;
     cliente->dni = dni;
     strncpy(cliente->nombre, nombre, 15);
@@ -15,7 +15,7 @@ Cliente *crearCliente(int edad, int dni, char nombre[15], char apellido[15], int
     cliente->referencia = referencia;
     int i;
     for(i = 0; i < MAX_CREDITOS; i++){
-        Credito *credito;
+        Credito *credito = malloc(sizeof(Credito));;
         cliente->creditos[i] = credito;
         cliente->creditos[i]->fecha = 0;
         cliente->creditos[i]->saldo = 0;
