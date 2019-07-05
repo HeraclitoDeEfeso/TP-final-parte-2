@@ -5,7 +5,7 @@
 
 Cliente *crearCliente()
 {
-    return formularioCliente((Cliente *) calloc(sizeof(Cliente), 1));
+    return (Cliente *) calloc(sizeof(Cliente), 1);
 }
 
 void mostrarCliente(Cliente *cliente){
