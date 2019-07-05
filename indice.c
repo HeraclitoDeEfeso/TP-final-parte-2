@@ -109,10 +109,10 @@ Indice *recuperarIndice(Recuperador recuperar, FILE* archivo)
     enum HijosArbol estado;
     unsigned char valor;
     void *clave;
-    if (!feof(archivo)) {
-        fread(&valor, sizeof(unsigned char), 1, archivo);
-        recuperar(&clave, archivo);
-        indice = crearArbol(clave);
+    if (!feof(archivo)) { printf("No llego al final del archio %p\n", archivo);
+        fread(&valor, sizeof(unsigned char), 1, archivo); printf("Leyo estado de nodo %i\n", valor);
+        recuperar(&clave, archivo); printf("Manda a guardar la clave en %p\n", &clave);
+        indice = crearArbol(clave); printf("Crea un nodo con el puntero %p\n", clave);
         estado = (enum HijosArbol) valor;
         switch (estado) {
         case DOS_HIJOS:
