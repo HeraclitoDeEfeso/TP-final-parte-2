@@ -193,4 +193,4 @@ TODO:
 
 <a name="ref-6" href="#cita-6"><sup>[6]</sup></a> "Writing kernel-doc comments", recuperado de http://www.kernel.org/doc/html/v4.10/doc-guide/kernel-doc.html
 
-a name="ref-7" href="#cita-7"><sup>[6]</sup></a> "AVL Trees BST: Efficiency of Operations", recuperado de https://courses.cs.washington.edu/courses/cse373/16au/slides/10-AVL-6up.pdf
+<a name="ref-7" href="#cita-7"><sup>[6]</sup></a> "AVL Trees BST: Efficiency of Operations", recuperado de https://courses.cs.washington.edu/courses/cse373/16au/slides/10-AVL-6up.pdf
