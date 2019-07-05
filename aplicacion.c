@@ -64,9 +64,25 @@ enum OperacionesCredito seleccionarOperacion(Credito *credito)
     return seleccion[activarMenu(menuOperacion) - 1];
 }
 
-int formularioMonto(Credito *credito){return 0;}
+int formularioMonto(Credito *credito)
+{
+    int monto;
+    do {
+        printf("\nIngrese el monto a pagar [0-%i]: ", credito->saldo);
+        if (scanf("%d", &monto) < 1) while (fgetc(stdin) != '\n');
+    } while (monto < 0 || monto > credito->saldo);
+    return monto;
+}
 
-int seleccionarCredito(Credito *creditos){return 0;}
+int seleccionarCredito(Credito *creditos)
+{
+    int credito;
+    do {
+        printf("\nIngrese el credito con el que va operar [1-3]: ");
+        if (scanf("%d", &credito) < 1) while (fgetc(stdin) != '\n');
+    } while (credito < 1 || credito > 3 || esNuloCredito(&creditos[credito - 1]));
+    return credito;
+}
 
 int main()
 {
