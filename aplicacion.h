@@ -4,6 +4,7 @@
 #include "credito.h"
 #include "cliente.h"
 #include "indice.h"
+#define ARCHIVO_BASE "base.bin"
 
 enum OperacionesCredito {PAGAR_CREDITO, CANCELAR_CREDITO, NO_OPERAR};
 
@@ -19,8 +20,12 @@ void listarCreditos(Cliente *cliente);
 
 void altaCredito(Cliente *cliente);
 
-void altaCliente(FILE *base, long posicionArchivo, Indice **indice, Comparador comparadorClave);
+void altaCliente(Indice **indice, Comparador comparadorClave);
 
-void listarClientes(Indice *vista, FILE* base);
+void listarClientes(Indice *vista);
+
+Cliente *seleccionarCliente(Indice *indice, Comparador funcion);
+
+Indice *cargarIndice();
 
 #endif //__APLICACION__

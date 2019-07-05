@@ -16,13 +16,14 @@
  */
 typedef struct {
     long posicion;
-    int edad;
-    char apellido[15];
+    int dni;
+    char nombre[15];
 } Clave;
 
 int compararClave(void *clave1, void *clave2);
 int recuperarClave (void **clave, FILE *archivo);
 int persistirClave(void *clave, FILE *indice);
 Clave *crearClave(Cliente *cliente, long posicionArchivo);
+Clave *formularioClave();
 
 #endif // CLAVES_H_INCLUDED
