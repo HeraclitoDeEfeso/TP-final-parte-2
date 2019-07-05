@@ -3,6 +3,7 @@
 #include "cliente.h"
 #include "indice.h"
 #include "claves.h"
+#include "menu/menu.h"
 
 void altaCliente(FILE *base, int posicionArchivo, Indice *indice, Comparador comparadorClave)
 {
@@ -48,10 +49,20 @@ void operarCredito(Cliente *cliente)
         break;
     case CANCELAR_CREDITO:
         borrarCreditoCliente(cliente, credito);
+    case NO_OPERAR:
+        break;
     }
 }
 
-enum OperacionesCredito seleccionarOperacion(Credito *credito){return 0;}
+enum OperacionesCredito seleccionarOperacion(Credito *credito)
+{
+    char *operaciones[] = {"Pagar Credito.",
+                           "Cancelar Credito.",
+                           "Salir."};
+    enum OperacionesCredito seleccion[] = {PAGAR_CREDITO, CANCELAR_CREDITO, NO_OPERAR};
+    Menu menuOperacion = crearMenu("Operaciones disponibles", operaciones, 3);
+    return seleccion[activarMenu(menuOperacion) - 1];
+}
 
 int formularioMonto(Credito *credito){return 0;}
 

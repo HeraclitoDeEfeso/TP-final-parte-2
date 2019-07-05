@@ -5,7 +5,7 @@
 #include "cliente.h"
 #include "indice.h"
 
-enum OperacionesCredito {PAGAR_CREDITO, CANCELAR_CREDITO};
+enum OperacionesCredito {PAGAR_CREDITO, CANCELAR_CREDITO, NO_OPERAR};
 
 enum OperacionesCredito seleccionarOperacion(Credito *credito);
 
