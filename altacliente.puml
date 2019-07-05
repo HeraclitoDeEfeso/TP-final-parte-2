@@ -8,7 +8,9 @@ collections "indices:Indice" as Indice
 create Cliente
 Aplicacion -> Cliente: crearCliente()
 activate Cliente
-Cliente -> Cliente: formularioCliente(nuevo)
+return nuevo
+Aplicacion -> Cliente: formularioCliente(nuevo)
+activate Cliente
 return nuevo
 Aplicacion -> Clave: crearClave(nuevo, posicionArchivo)
 activate Clave
