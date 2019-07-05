@@ -3,11 +3,21 @@
 #include <assert.h>
 #include <string.h>
 #include "test_cliente.h"
-#include "cliente.h"
+
+void test_cliente()
+{
+    test_crear_cliente_con_creditos_nulos();
+    test_guardar_recuperar_cliente();
+    test_es_posible_credito_de_cliente_nuevo();
+    test_no_es_posible_credito_despues_del_maximo();
+    test_borrar_credito();
+//    test_no_es_posible_borrar_credito_ajeno(); // Se comenta porque ahora el criterio es por valor
+}
 
 void test_crear_cliente_con_creditos_nulos()
 {
-    Cliente *miCliente = crearCliente();
+    char nombre[15] = "Matias\0";
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     int i;
     for(i = 0; i < MAX_CREDITOS; i++)
         assert(esNuloCredito(&(miCliente->creditos[i])));
@@ -15,42 +25,56 @@ void test_crear_cliente_con_creditos_nulos()
 
 void test_es_posible_credito_de_cliente_nuevo()
 {
-    Cliente *miCliente = crearCliente();
+    char nombre[15] = "Matias\0";
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     assert(esposibleOtroCredito(miCliente));
 }
 
 void test_no_es_posible_credito_despues_del_maximo()
 {
-    Cliente *miCliente = crearCliente();
+    char nombre[15] = "Matias\0";
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
-        crearCreditoCliente(miCliente, 20010101, 1000 + i);
+        Credito *nuevo = malloc(sizeof(Credito));
+        nuevo->fecha =  1000 + i;
+        nuevo->saldo =  20010101;
+        crearCreditoCliente(miCliente, nuevo);
     }
     assert(!esposibleOtroCredito(miCliente));
 }
 
 void test_borrar_credito()
 {
-    Cliente *miCliente = crearCliente();
+    char nombre[15] = "Matias\0";
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
-        unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
+        Credito *nuevo = malloc(sizeof(Credito));
+        nuevo->fecha =  1000 + i;
+        nuevo->saldo =  20010101;
+        unCredito = crearCreditoCliente(miCliente,nuevo);
     }
     assert(!esposibleOtroCredito(miCliente));
     borrarCreditoCliente(miCliente, unCredito);
     assert(esposibleOtroCredito(miCliente));
 }
 
-void test_no_es_posible_borrar_credito_que_no_tengo()
+void test_no_es_posible_borrar_credito_ajeno()
 {
-    Cliente *miCliente = crearCliente();
-    Cliente *otroCliente = crearCliente();
+    char nombre[15] = "Matias\0";
+    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
+    char nombreOtro[15] = "Martin\0";
+    Cliente *otroCliente = crearCliente(25,38222000,nombreOtro,nombreOtro,0);
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
-        unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
-        unCredito = crearCreditoCliente(otroCliente, 20010101, 2000 + i);
+        Credito *nuevo = malloc(sizeof(Credito));
+        nuevo->fecha =  1000 + i;
+        nuevo->saldo =  20010101;
+        unCredito = crearCreditoCliente(miCliente,nuevo);
+        unCredito = crearCreditoCliente(otroCliente,nuevo);
     }
     borrarCreditoCliente(miCliente, unCredito);
     assert(!esposibleOtroCredito(miCliente));
@@ -76,14 +100,4 @@ void test_guardar_recuperar_cliente()
     assert(clienteRecuperado->inicial == miCliente.inicial);
     assert(strcmp(clienteRecuperado->nombre, miCliente.nombre) == 0);
     assert(clienteRecuperado->referencia == miCliente.referencia);
-}
-
-void test_cliente()
-{
-    test_crear_cliente_con_creditos_nulos();
-    test_guardar_recuperar_cliente();
-    test_es_posible_credito_de_cliente_nuevo();
-    test_no_es_posible_credito_despues_del_maximo();
-    test_borrar_credito();
-    test_no_es_posible_borrar_credito_que_no_tengo();
 }

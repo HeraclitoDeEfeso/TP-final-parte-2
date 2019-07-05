@@ -74,13 +74,11 @@ int esposibleOtroCredito(Cliente *cliente);
 /**
  * crearCreditoCliente() - crea un credito para un cliente.
  * @cliente: cliente que obtendra el credito.
- * @fecha: fecha de inicio del credito.
- * @monto: deuda a pagar del credito.
- * Método para crear un nuevo credito en el cliente especificado en el cual ya se chequeo que tiene un
- * credito disponible.
+ * @credito: credito que sera asignado.
+ * Método para asignar un credito a un cliente especifico
  * return: devuelve un puntero del credito creado
  */
-Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto);
+Credito *crearCreditoCliente(Cliente *cliente, Credito *credito);
 
 /**
  * borrarCreditoCliente() - borra un credito de un cliente.
