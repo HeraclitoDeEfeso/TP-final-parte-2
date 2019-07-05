@@ -3,15 +3,15 @@
 #define __APLICACION__
 #include "cliente.h"
 #include "credito.h"
-#include "iterador.h"
 #include "indice.h"
 #include "aplicacion.h"
+#define CLIENTES_NUEVOS 20
 //include de los paquetes Avl y menu
 
 typedef struct {
-	//FILE base;
-	Cliente nuevos[0];
-	Indice indices[0];
+	FILE base;
+	Cliente nuevos[CLIENTES_NUEVOS];
+	Indice *indices;
 	int persistidos;
 	int siguienteID;
 } Aplicacion;
