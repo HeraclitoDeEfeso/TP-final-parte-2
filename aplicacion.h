@@ -19,7 +19,7 @@ void listarCreditos(Cliente *cliente);
 
 void altaCredito(Cliente *cliente);
 
-void altaCliente(FILE *base, long posicionArchivo, Indice *indice, Comparador comparadorClave);
+void altaCliente(FILE *base, long posicionArchivo, Indice **indice, Comparador comparadorClave);
 
 void listarClientes(Indice *vista, FILE* base);
 

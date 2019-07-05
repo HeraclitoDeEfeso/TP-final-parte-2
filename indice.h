@@ -46,7 +46,7 @@ typedef int (*Persistente) (void *clave, FILE* archivo);
  * el archivo ya estará abierto y no habrá llegado al final; hay
  * suficiente memoria para reconstituir la clave.
  */
-typedef void (*Recuperador) (void **clave, FILE *archivo);
+typedef int (*Recuperador) (void **clave, FILE *archivo);
 
 /**
  * agregarClaveIndice() - Método para agregar una nueva clave al Indice.

@@ -22,17 +22,18 @@ int main()
     }
     fclose(archivoIndice); printf("Cerro el indice.\n");
     listarClientes(indice, base); printf("Listo clientes.\n");
-    altaCliente(base, posicionArchivo, indice, comparadorClave); printf("Realizo un alta.\n");
-    archivoIndice = fopen("indice.bin", "wb"); printf("Abrio el indice.\n");
+    altaCliente(base, posicionArchivo, &indice, comparadorClave); printf("Realizo un alta.\n");
+    archivoIndice = fopen("indice.bin", "wb"); printf("Abrio el indice en la posicion %ld.\n", ftell(archivoIndice));
     persistirIndice(indice, &persistirClave, archivoIndice); printf("Guardo el indice.\n");
     return 0;
 }
 
-void altaCliente(FILE *base, long posicionArchivo, Indice *indice, Comparador comparadorClave)
+void altaCliente(FILE *base, long posicionArchivo, Indice **indice, Comparador comparadorClave)
 {
     Cliente *nuevoCliente = formularioCliente(crearCliente());
     guardarCliente(nuevoCliente, base);
-    agregarClaveIndice(indice, crearClave(nuevoCliente, posicionArchivo), comparadorClave);
+    *indice = agregarClaveIndice(*indice, crearClave(nuevoCliente, posicionArchivo), comparadorClave);
+    free(nuevoCliente);
 }
 
 void altaCredito(Cliente *cliente)

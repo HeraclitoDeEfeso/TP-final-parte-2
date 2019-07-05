@@ -24,11 +24,12 @@ int persistirClave(void *clave, FILE *archivo)
     return fwrite(&valor, sizeof(int), 1, archivo);
 }
 
-void recuperarClave(void **clave, FILE *archivo)
+int recuperarClave(void **clave, FILE *archivo)
 {
-    int valor;
-    fread(&valor, sizeof(int), 1, archivo);
+    int valor, result;
+    result = fread(&valor, sizeof(int), 1, archivo);
     *clave = (void*) valor;
+    return result;
 }
 
 void mostrarArbolIndice(Arbol *arbol, int level)
