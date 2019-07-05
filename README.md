@@ -118,27 +118,42 @@ TODO:
 
 #### Archivo [`aplicacion.c`](aplicacion.c)
 
-El archivo `app.c` contiene la implementación de la aplicación y de las funciones y módulos auxiliares.
+El archivo `aplicacion.c` contiene la implementación de la aplicación, funciones y módulos auxiliares y la interfaz de usuario. 
 
 #### Archivo [`aplicacion.h`](aplicacion.h)
 
+El archivo `aplicacion.h` contiene la interfaz de la aplicación con las funciones y módulos auxiliares.
+
 #### Archivo [`claves.c`](claves.c)
+El archivo `claves.c` contiene la implementacion del TAD claves con sus metodos que permiten comparar claves entre si y persistirlas
 
 #### Archivo [`claves.h`](claves.h)
+El archivo `claves.h` contiene la interfaz del TAD claves con la definicion de sus metodos.
 
 #### Archivo [`cliente.c`](cliente.c)
+El archivo `cliente` contiene la implementacion del TAD cliente con sus metodos que permiten crear y modificar la informacion de los clientes, tambien se encarga de su persistencia y de mostrar sus datos en pantalla.
 
 #### Archivo [`cliente.h`](cliente.h)
+El archivo `cliente.h` contiene la interfaz del TAD cliente con la definicion de sus metodos.
 
 #### Archivo [`credito.c`](credito.c)
+El archivo `credito.c` contiene la implementacion del TAD credito con sus metodos que permiten crear, borrar y modificar los creditos que seran de cada cliente.
 
 #### Archivo [`credito.h`](credito.h)
+El archivo `credito.h` contiene la interfaz del TAD credito con la definicion de sus metodos.
 
 #### Archivo [`indice.c`](indice.c)
+El archivo `indice.c` contiene la implementacion del TAD indice el cual será utilizado para representar el Indice implementado como
+un Árbol AVL. Tambien contiene la implementacion del TAD iterador utilizado para representar el Iterador del Indice implementado como Árbol AVL que permiten recorrer el iterador.
 
 #### Archivo [`indice.h`](indice.h)
+El archivo `credito.h` contiene la interfaz del TAD indice y el TAD Iterador con la definicion de sus metodos.
 
 #### AVL
+
+#### Test
+
+
 
 ### 3.iv. Guía de Compilación
 
@@ -163,3 +178,19 @@ TODO:
  - [ ] enlaces de las herramientas, 
  - [ ] referencia bibliográfica de la teoría 
  - [ ] enlaces a las guías de normas de programación.
+ 
+ ## Referencias
+
+<a name="ref-1" href="#cita-1"><sup>[1]</sup></a> Adelson-Velsky, Georgy; Landis, Evgenii (1962). "An algorithm for the organization of information". Proceedings of the USSR Academy of Sciences (in Russian). 146: 263–266
+
+<a name="ref-2" href="#cita-2"><sup>[2]</sup></a> Knuth, Donald E. (2000). Sorting and searching (2. ed., 6. printing, newly updated and rev. ed.). Boston [u.a.]: Addison-Wesley. pp. 458–481
+
+<a name="ref-3" href="#cita-3"><sup>[3]</sup></a> "The open source, cross platform, free C, C++ and Fortran IDE", recuperado de www.codeblocks.org
+
+<a name="ref-4" href="#cita-4"><sup>[4]</sup></a> "Minimalist GNU for Windows", recuperado de www.mingw.org
+
+<a name="ref-5" href="#cita-5"><sup>[5]</sup></a> "Linux kernel coding style", recuperado de http://www.kernel.org/doc/html/v4.10/process/coding-style.html
+
+<a name="ref-6" href="#cita-6"><sup>[6]</sup></a> "Writing kernel-doc comments", recuperado de http://www.kernel.org/doc/html/v4.10/doc-guide/kernel-doc.html
+
+a name="ref-7" href="#cita-7"><sup>[6]</sup></a> "AVL Trees BST: Efficiency of Operations", recuperado de https://courses.cs.washington.edu/courses/cse373/16au/slides/10-AVL-6up.pdf
