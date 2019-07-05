@@ -2,21 +2,21 @@
 
 participant Aplicacion
 participant "nuevo:Cliente" as Cliente
-collections "nuevos:Cliente" as Lista
+participant Clave
 collections "indices:Indice" as Indice
 
 create Cliente
-Aplicacion -> Cliente: crearCliente(siguienteID)
+Aplicacion -> Cliente: crearCliente()
 activate Cliente
 Cliente -> Cliente: formularioCliente(nuevo)
 return nuevo
-Aplicacion -> Lista: agregar(nuevo)
-activate Lista
-return 
+Aplicacion -> Clave: crearClave(nuevo, posicionArchivo)
+activate Clave
+return
 loop por cada indice en indices
-	Aplicacion -> Indice: agregar(clave, siguienteID)
+	Aplicacion -> Indice: agregarClaveIndice(Clave)
 	activate Indice
-	return 
+	return
 end
 
 @enduml
