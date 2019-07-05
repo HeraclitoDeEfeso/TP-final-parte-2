@@ -21,7 +21,7 @@ typedef struct {
 } Clave;
 
 int compararClave(void *clave1, void *clave2);
-Clave *recuperarClave(FILE *indice);
+void recuperarClave (void **clave, FILE *archivo);
 int persistirClave(Clave *clave, FILE *indice);
 Clave *crearClave(Cliente *cliente, int posicionArchivo);
 
