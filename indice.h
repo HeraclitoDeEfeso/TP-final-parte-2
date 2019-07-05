@@ -186,18 +186,16 @@ void *siguienteIterador(Iterador **iterador);
  enum HijosArbol {SIN_HIJOS, HIJO_IZQ, HIJO_DER, DOS_HIJOS};
 
 /**
- * avanzarIterador() - Coloca en el Iterador/Pila/Lista el siguiente subArbol.
- * @iterador: Iterador que recorre el Indice.
+ * buscarClaveIndice() - Método para buscar una clave existente en el Indice.
+ * @indice: indice en el que se quiere buscar la clave.
+ * @clave: una clave existente en el indice.
+ * @funcion: función comparadora de claves.
  *
- * Coloca en el Iterador/Pila/Lista el siguiente subArbol a recorrer. Se
- * separa de `siguienteIterador` sólo con el objetivo de claridad en el
- * código. Precondición: memoria suficiente para tantos nodos lista como
- * nodos arbol que falten recorrer. Postcondicion: se liberará y alocará
- * memoria suficiente para la estructura de Lista. El Iterador nulo no
- * tiene consecuencias.
+ * Método para buscar una clave existente en el Indice. Precondición: ninguna.
+ * Postcondicion: ninguna.
  *
- * Return: un nuevo Iterador con el siguiente nodo Arbol en la cabecera.
+ * Return: la clave encontrada o en su defecto NULL.
  */
-Iterador *avanzarIterador(Iterador *iterador);
+void *buscarClaveIndice(Indice *indice, void *clave, Comparador funcion);
 
 #endif //__INDICE__

@@ -60,25 +60,15 @@ Iterador *obtenerIterador(Indice *indice)
 
 void *siguienteIterador(Iterador **iterador)
 {
+    Arbol *actual = NULL;
     void *clave = NULL;
     if (NULL != *iterador) {
-        clave = ((Arbol*) (*iterador)->dato)->clave;
-        *iterador = avanzarIterador(desapilarLista(*iterador));
+        actual = (Arbol*) ((*iterador)->dato);
+        clave = actual->clave;
+        *iterador = unirLista(obtenerIterador(actual->derecha),
+                              desapilarLista(*iterador));
     }
     return clave;
-}
-
-Iterador *avanzarIterador(Iterador *iterador)
-{
-    void *proximoDato;
-    if (NULL != iterador) {
-        proximoDato = iterador->dato;
-        iterador = desapilarLista(iterador);
-        iterador = unirLista(obtenerIterador(((Arbol*) proximoDato)->derecha),
-                            iterador);
-        iterador = apilarLista(iterador, proximoDato);
-    }
-    return iterador;
 }
 
 void persistirIndice(Indice *indice, Persistente persistir, FILE* archivo)
@@ -127,4 +117,10 @@ Indice *recuperarIndice(Recuperador recuperar, FILE* archivo)
         }
     }
     return indice;
+}
+
+void *buscarClaveIndice(Indice *indice, void *clave, Comparador funcion)
+{
+    Arbol *encontrado = buscarArbol(indice, clave, funcion);
+    return (NULL != encontrado)? encontrado->clave : encontrado;
 }

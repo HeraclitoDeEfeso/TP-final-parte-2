@@ -135,6 +135,38 @@ void test_persistencia_indice()
     assert(sonIgualesIndice(original, recuperado));
 }
 
+void test_persistencia_indice_desbalanceado()
+{
+    int ingresados[] = {3, 10};
+    int i = 0;
+    Indice *original = NULL;
+    Indice *recuperado = NULL;
+    FILE *archivo;
+    for (; i < sizeof(ingresados) / sizeof(int); i++)
+        original = agregarClaveIndice(original, (void*) ingresados[i], &compararIndice);
+    archivo = fopen("test_persistencia_indice_desbalanceado.bin", "wb");
+    persistirIndice(original, &persistirClave, archivo);
+    fclose(archivo);
+    archivo = fopen("test_persistencia_indice_desbalanceado.bin", "rb");
+    recuperado = recuperarIndice(&recuperarClave, archivo);
+    fclose(archivo);
+    assert(sonIgualesIndice(original, recuperado));
+}
+
+void test_iterador_de_indice_desbalanceado()
+{
+    int ingresados[] = {3, 10};
+    int esperados[] = {3, 10};
+    int i = 0;
+    Indice *indice = NULL;
+    Iterador *iterador;
+    for (; i < sizeof(ingresados) / sizeof(int); i++)
+        indice = agregarClaveIndice(indice, (void*) ingresados[i], &compararIndice);
+    iterador = obtenerIterador(indice);
+    i = 0;
+    while (NULL != iterador)
+        assert(((int) siguienteIterador(&iterador)) == esperados[i++]);}
+
 void test_indice()
 {
     test_vista_menor_con_limite_externo();
@@ -142,4 +174,6 @@ void test_indice()
     test_vista_mayor_con_limite_externo();
     test_vista_mayor_con_limite_interno();
     test_persistencia_indice();
+    test_persistencia_indice_desbalanceado();
+    test_iterador_de_indice_desbalanceado();
 }
