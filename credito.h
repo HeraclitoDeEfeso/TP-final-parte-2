@@ -42,15 +42,10 @@ Credito *formularioCredito(Credito *credito);
 /**
  * esNuloCredito() - Dice si un credito esta disponible.
  * @credito:Credito que se desea saber si esta en uso
- */**
- * esNuloCredito() - Dice si un credito esta disponible.
- * @credito:Credito que se desea saber si esta en uso
  *
  * Método que devuelve 0 en el caso de que este en uso el credito especificado.
- * return: devuelve un entero que indica si verdaderos o falso segun el estado del credito.
- */
- * Método que devuelve 0 en el caso de que este en uso el credito especificado.
- * return: devuelve un entero que indica si verdaderos o falso segun el estado del credito.
+ *
+ * Return: devuelve un entero que indica si verdaderos o falso segun el estado del credito.
  */
 int esNuloCredito(Credito *credito);
 

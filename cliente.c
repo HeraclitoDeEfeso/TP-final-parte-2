@@ -40,9 +40,9 @@ Cliente *formularioCliente(Cliente *cliente){
     printf("dni : ");
     scanf("%i", &dni);
     printf("Nombre: ");
-    scanf("%s", &nombre);
+    scanf("%s", nombre);
     printf("Apellido: ");
-    scanf("%s", &apellido);
+    scanf("%s", apellido);
     printf("Referencia : ");
     scanf("%i", &referencia);
     cliente = crearCliente(edad, dni, nombre, apellido, referencia);
