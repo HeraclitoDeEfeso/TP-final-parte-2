@@ -1,50 +1,60 @@
+#include <stdlib.h>
 #include "aplicacion.h"
 #include "cliente.h"
 #include "indice.h"
 #include "claves.h"
 
-void altaCliente()
+void altaCliente(FILE *base, int posicionArchivo, Indice *indice, Comparador comparadorClave)
 {
-    FILE *base; // suponemos que está abierta para escribir
-    int posicionArchivo; // suponemos que está seteado
-    Indice *indice; // suponemos que es el correcto
     Cliente *nuevoCliente = crearCliente();
     guardarCliente(nuevoCliente, base);
-    agregarClaveIndice(indice, crearClave(nuevoCliente, posicionArchivo), &compararClave);
+    agregarClaveIndice(indice, crearClave(nuevoCliente, posicionArchivo), comparadorClave);
 }
-void altaCredito()
+
+void altaCredito(Cliente *cliente)
 {
-    Cliente *nuevoCliente;//cliente correcto
-    if(esposibleOtroCredito(nuevoCliente)){
+    if (esposibleOtroCredito(cliente)) {
             Credito *nuevoCredito = malloc(sizeof(Credito));
             nuevoCredito = formularioCredito(nuevoCredito);
-            crearCreditoCliente(nuevoCliente, nuevoCliente);
+            crearCreditoCliente(cliente, nuevoCredito->fecha, nuevoCredito->saldo);
     }
 }
-void listarCreditos()
+
+void listarCreditos(Cliente *cliente)
 {
-    Cliente *nuevoCliente;//cliente correcto
+    Credito *creditos = cliente->creditos;
+    mostrarCliente(cliente);
     int i;
-    for(i=0;i<MAX_CREDITOS;i++){
-        mostrarCredito(&(nuevoCliente->creditos[i]));
+    for (i = 0; i < MAX_CREDITOS; i++) {
+        mostrarCredito(creditos + i);
     }
-
-
 }
-void operarCredito()
+
+void operarCredito(Cliente *cliente)
 {
-    Cliente *nuevoCliente;//cliente correcto
-    Credito *nuevoCredito;//credito correcto
-    int opcionSeleccionada;//opcion seleccionada por el usuario
-    if(opcionSeleccionada == 1){
-        int monto;
-        printf("seleccionar monto a pagar %i", &monto);
-        pagarCredito(nuevoCredito, monto);
+    Credito *creditos = cliente->creditos;
+    Credito *credito;
+    int creditoSeleccionado;
+    int montoPago;
+    enum OperacionesCredito operacionSeleccionada;
+    listarCreditos(cliente);
+    creditoSeleccionado = seleccionarCredito(creditos);
+    credito = &creditos[creditoSeleccionado];
+    operacionSeleccionada = seleccionarOperacion(credito);
+    switch (operacionSeleccionada) {
+    case PAGAR_CREDITO:
+        montoPago = formularioMonto(credito);
+        pagarCredito(credito, montoPago);
+        break;
+    case CANCELAR_CREDITO:
+        borrarCreditoCliente(cliente, credito);
     }
-    else if(opcionSeleccionada == 2){
-        borrarCreditoCliente(nuevoCliente, nuevoCredito);
-    }
-
 }
+
+enum OperacionesCredito seleccionarOperacion(Credito *credito){return 0;}
+
+int formularioMonto(Credito *credito){return 0;}
+
+int seleccionarCredito(Credito *creditos){return 0;}
 
 int main(){}
