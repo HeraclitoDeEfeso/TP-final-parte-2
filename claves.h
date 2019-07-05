@@ -15,14 +15,14 @@
  * persistencia y recuperación del Indice.
  */
 typedef struct {
-    int posicion;
+    long posicion;
     int edad;
     char apellido[15];
 } Clave;
 
 int compararClave(void *clave1, void *clave2);
 void recuperarClave (void **clave, FILE *archivo);
-int persistirClave(Clave *clave, FILE *indice);
-Clave *crearClave(Cliente *cliente, int posicionArchivo);
+int persistirClave(void *clave, FILE *indice);
+Clave *crearClave(Cliente *cliente, long posicionArchivo);
 
 #endif // CLAVES_H_INCLUDED
