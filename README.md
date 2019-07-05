@@ -66,6 +66,14 @@ TODO:
  - [ ] Detalles del entorno de programación (IDE, Compilador, plataforma). 
  - [ ] Detalles del standard C utilizado. 
  - [ ] Detalles de las normas de programación seguidas. 
+ 
+ ## 2. Recursos utilizados
+
+Para nuestro desarrollo hemos utilizida el Entorno de Desarrollo Integrado (IDE) Code::Blocks<a name="cita-3" href="#ref-3"><sup>[3]</sup></a>
+para el sistema operativo Windows y con un compilador portado del GCC de GNU aportado por el proyecto de entorno de desarrollo MinGW<a name="cita-4" href="#ref-4"><sup>[4]</sup></a>. 
+
+En cuanto al lenguage C propiamente, hemos utilizado sólo las características y sintaxis del ANSI C89/ ISO C90 adhiriendo en lo posible al estilo de codificación del kernel de Linux<a name="cita-5" href="#ref-5"><sup>[5]</sup></a> 
+y su guía para la documentación<a name="cita-6" href="#ref-6"><sup>[6]</sup></a>. 
 
 ## 3. Detalles de implementación
 
