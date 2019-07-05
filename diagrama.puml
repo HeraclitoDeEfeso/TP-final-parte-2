@@ -67,7 +67,7 @@ class Indice {
     obtenerVistaMayorIndice(self: Indice, c: Clave, func: Comparador): Indice
     obtenerIterador(self: Indice): Iterador
     persistirIndice(self: Indice, func: Persistente, f: FILE): void
-    recuperarIndice(Recuperador recuperar, f: FILE): Indice
+    recuperarIndice(func: Recuperador, f: FILE): Indice
 }
 
 class Iterador {
