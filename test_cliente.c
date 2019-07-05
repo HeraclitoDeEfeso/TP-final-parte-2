@@ -44,15 +44,13 @@ void test_borrar_credito()
 
 void test_no_es_posible_borrar_credito_que_no_tengo()
 {
-    char nombre[15] = "Matias\0";
-    Cliente *miCliente = crearCliente(21,40653669,nombre,nombre,0);
-    char nombreOtro[15] = "Martin\0";
-    Cliente *otroCliente = crearCliente(25,38222000,nombreOtro,nombreOtro,0);
+    Cliente *miCliente = crearCliente();
+    Cliente *otroCliente = crearCliente();
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
         unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
-        unCredito = crearCreditoCliente(otroCliente, 20010101, 1000 + i);
+        unCredito = crearCreditoCliente(otroCliente, 20010101, 2000 + i);
     }
     borrarCreditoCliente(miCliente, unCredito);
     assert(!esposibleOtroCredito(miCliente));
