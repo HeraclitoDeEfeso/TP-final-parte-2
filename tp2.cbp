@@ -55,8 +55,11 @@
 		</Unit>
 		<Unit filename="claves.c">
 			<Option compilerVar="CC" />
+			<Option target="Release" />
 		</Unit>
-		<Unit filename="claves.h" />
+		<Unit filename="claves.h">
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="cliente.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -69,6 +72,13 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="indice.h" />
+		<Unit filename="menu/menu.c">
+			<Option compilerVar="CC" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="menu/menu.h">
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="test.c">
 			<Option compilerVar="CC" />
 			<Option target="Debug" />
