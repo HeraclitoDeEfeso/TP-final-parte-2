@@ -131,7 +131,7 @@ El archivo `claves.c` contiene la implementacion del TAD claves con sus metodos 
 El archivo `claves.h` contiene la interfaz del TAD claves con la definicion de sus metodos.
 
 #### Archivo [`cliente.c`](cliente.c)
-El archivo `cliente` contiene la implementacion del TAD cliente con sus metodos que permiten crear y modificar la informacion de los clientes, tambien se encarga de su persistencia y de mostrar sus datos en pantalla.
+El archivo `cliente.c` contiene la implementacion del TAD cliente con sus metodos que permiten crear y modificar la informacion de los clientes, tambien se encarga de su persistencia y de mostrar sus datos en pantalla.
 
 #### Archivo [`cliente.h`](cliente.h)
 El archivo `cliente.h` contiene la interfaz del TAD cliente con la definicion de sus metodos.
@@ -147,7 +147,7 @@ El archivo `indice.c` contiene la implementacion del TAD indice el cual será ut
 un Árbol AVL. Tambien contiene la implementacion del TAD iterador utilizado para representar el Iterador del Indice implementado como Árbol AVL que permiten recorrer el iterador.
 
 #### Archivo [`indice.h`](indice.h)
-El archivo `credito.h` contiene la interfaz del TAD indice y el TAD Iterador con la definicion de sus metodos.
+El archivo `indice.h` contiene la interfaz del TAD indice y el TAD Iterador con la definicion de sus metodos.
 
 #### AVL
 
@@ -193,4 +193,4 @@ TODO:
 
 <a name="ref-6" href="#cita-6"><sup>[6]</sup></a> "Writing kernel-doc comments", recuperado de http://www.kernel.org/doc/html/v4.10/doc-guide/kernel-doc.html
 
-<a name="ref-7" href="#cita-7"><sup>[6]</sup></a> "AVL Trees BST: Efficiency of Operations", recuperado de https://courses.cs.washington.edu/courses/cse373/16au/slides/10-AVL-6up.pdf
+<a name="ref-7" href="#cita-7"><sup>[7]</sup></a> "AVL Trees BST: Efficiency of Operations", recuperado de https://courses.cs.washington.edu/courses/cse373/16au/slides/10-AVL-6up.pdf
