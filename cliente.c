@@ -8,10 +8,16 @@ Cliente *crearCliente()
     return (Cliente *) calloc(sizeof(Cliente), 1);
 }
 
+void listarAtributosCliente() {
+    printf("\n       Nombre y apellido        | Edad | DNI      | Referencia\n"
+             "--------------------------------+------+----------+-----------\n");
+}
 void mostrarCliente(Cliente *cliente){
-    printf("\nNombre del cliente: %s %s\nDocumento: %i\nEdad: %i\nReferencia: %i",
-           cliente->nombre,cliente->apellido, cliente->dni, cliente->edad,cliente->referencia);
-    //printf("CREDITOS")
+        printf("%15.15s %-15.15s | %4i | %8i | %7i\n",
+           cliente->nombre,cliente->apellido,
+           cliente->edad,
+           cliente->dni,
+           cliente->referencia);
 }
 
 Cliente *formularioCliente(Cliente *cliente){

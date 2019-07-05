@@ -10,6 +10,10 @@ void pagarCredito(Credito *credito,int monto){
          }
     }
 }
+void listarAtributosCredito() {
+    printf("\n  Fecha    |  Saldo    \n"
+             "-----------+-----------\n");
+}
 
 void borrarCredito(Credito *credito){
     credito->saldo = 0;
@@ -17,7 +21,7 @@ void borrarCredito(Credito *credito){
 }
 
 void mostrarCredito(Credito *credito){
-    printf("\nFecha del credito: %i\nMonto a pagar: %i\n",
+    printf("%8i %13i\n",
            credito->fecha, credito->saldo);
 }
 
