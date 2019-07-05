@@ -14,14 +14,14 @@ int main()
     Indice *indice = NULL;
     Comparador comparadorClave = &compararClave;
     base = fopen("base.bin", "a+b"); printf("Abrio la base.\n");
-    fseek(base, 0, SEEK_END); printf("Posiciono al final de la base.\n");
-    posicionArchivo = ftell(base); printf("Leyo posicion final %lu .\n", posicionArchivo);
     archivoIndice = fopen("indice.bin", "rb"); printf("Abrio el indice\n");
     if (archivoIndice) {
         indice = recuperarIndice(&recuperarClave, archivoIndice); printf("Recupero el indice.\n");
     }
     fclose(archivoIndice); printf("Cerro el indice.\n");
     listarClientes(indice, base); printf("Listo clientes.\n");
+    fseek(base, 0, SEEK_END); printf("Posiciono al final de la base.\n");
+    posicionArchivo = ftell(base); printf("Leyo posicion final %lu .\n", posicionArchivo);
     altaCliente(base, posicionArchivo, &indice, comparadorClave); printf("Realizo un alta.\n");
     archivoIndice = fopen("indice.bin", "wb"); printf("Abrio el indice en la posicion %ld.\n", ftell(archivoIndice));
     persistirIndice(indice, &persistirClave, archivoIndice); printf("Guardo el indice.\n");
@@ -86,7 +86,7 @@ void listarClientes(Indice *vista, FILE* base)
     while (NULL != iterador) { printf("El iterador no es nulo.\n");
         clave = (Clave*) siguienteIterador(&iterador); printf("Obtuvo la clave %s %i.\n", clave->apellido, clave->edad);
         fseek(base, clave->posicion, SEEK_SET); printf("Se posiciono en la posicion %ld\n", clave->posicion);
-        cliente = recuperarCliente(base); printf("Recupero el cliente");
+        cliente = recuperarCliente(base); printf("Recupero el cliente\n");
         mostrarCliente(cliente);
         free(cliente);
     }
