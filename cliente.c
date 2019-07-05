@@ -3,24 +3,9 @@
 #include <string.h>
 #include "cliente.h"
 
-Cliente *crearCliente(int edad, int dni, char nombre[15], char apellido[15], int referencia) {
-    Cliente *cliente = malloc(sizeof(Cliente));
-    cliente->edad = edad;
-    cliente->dni = dni;
-    strncpy(cliente->nombre, nombre, 15);
-    cliente->nombre[15] = '\0';
-    strncpy(cliente->apellido, apellido, 15);
-    cliente->apellido[15] = '\0';
-    cliente->inicial = nombre[0];
-    cliente->referencia = referencia;
-    int i;
-    for(i = 0; i < MAX_CREDITOS; i++){
-        Credito credito;
-        cliente->creditos[i] = credito;
-        cliente->creditos[i].fecha = 0;
-        cliente->creditos[i].saldo = 0;
-    }
-    return cliente;
+Cliente *crearCliente()
+{
+    return formularioCliente((Cliente *) calloc(sizeof(Cliente), 1));
 }
 
 void mostrarCliente(Cliente *cliente){
@@ -30,22 +15,16 @@ void mostrarCliente(Cliente *cliente){
 }
 
 Cliente *formularioCliente(Cliente *cliente){
-    int edad;
-    int dni;
-    char nombre[15];
-    char apellido[15];
-    int referencia;
     printf("Edad del cliente: ");
-    scanf("%i", &edad);
+    scanf("%i", &(cliente->edad));
     printf("dni : ");
-    scanf("%i", &dni);
+    scanf("%i", &(cliente->dni));
     printf("Nombre: ");
-    scanf("%s", nombre);
+    scanf("%s", cliente->nombre);
     printf("Apellido: ");
-    scanf("%s", apellido);
+    scanf("%s", cliente->apellido);
     printf("Referencia : ");
-    scanf("%i", &referencia);
-    cliente = crearCliente(edad, dni, nombre, apellido, referencia);
+    scanf("%i", &(cliente->referencia));
     return cliente;
 }
 

@@ -22,16 +22,12 @@ typedef struct {
 
 /**
  * crearCliente() - crea un cliente.
- * @edad: edad del cliente.
- * @dni: dni del cliente.
- * @nombre: cadena de char de tamaño 15 que indica el nombre del cliente.
- * @apellido: cadena de char de tamaño 15 que indica el apellido del cliente.
- * @referencia: entero que permite encontrar a un referente.
- * Método que crea un cliente con los datos especificados en su parametro.
  *
- * return: devuelve un puntero al cliente creado
+ * Método que crea un Cliente y carga sus atributos mediante un formulario.
+ *
+ * Return: devuelve un puntero al cliente creado
  */
-Cliente *crearCliente(int edad, int dni, char nombre[15],char apellido[15],int referencia);
+Cliente *crearCliente();
 
 /**
  * mostrarCliente() - muestra un cliente.
