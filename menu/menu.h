@@ -15,7 +15,7 @@ typedef struct {
     char *titulo;
     char **opciones;
     int dimension;
-} *Menu;
+} Menu;
 
 /**
  * crearMenu() - Método para crear un menú e inizializar sus atributos.
@@ -29,7 +29,7 @@ typedef struct {
  *
  * Return: un Menu.
  */
-Menu crearMenu(char *titulo, char **opciones, int dimension);
+Menu *crearMenu(char *titulo, char **opciones, int dimension);
 
 /**
  * activarMenu() - Método para para solicitar la elección del usuario.
@@ -42,6 +42,6 @@ Menu crearMenu(char *titulo, char **opciones, int dimension);
  *
  * Return: el índice de la opción seleccionada comenzando por el 1.
  */
-int activarMenu(Menu menu);
+int activarMenu(Menu *menu);
 
 #endif

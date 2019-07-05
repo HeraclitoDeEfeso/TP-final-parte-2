@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include "menu.h"
 
-Menu crearMenu(char *titulo, char **opciones, int dimension) {
-    Menu menu = malloc(sizeof *menu);
+Menu *crearMenu(char *titulo, char **opciones, int dimension) {
+    Menu *menu = malloc(sizeof *menu);
     menu->titulo = titulo;
     menu->opciones = opciones;
     menu->dimension = dimension;
     return menu;
 }
 
-int activarMenu(Menu menu){
+int activarMenu(Menu *menu){
     int i;
     printf("\n%s.\n", menu->titulo);
     for(i = 0; i < menu->dimension; i++){
