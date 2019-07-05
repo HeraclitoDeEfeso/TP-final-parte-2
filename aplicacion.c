@@ -7,6 +7,11 @@ int compararIndice(void *clave1, void *clave2)
 {
     return (int) clave1 - (int) clave2;
 }
+void altaCliente()
+{
+    int posicionArchivo;
+    Cliente *nuevoCliente = crearCliente();
+}
 
 int main(){
     char *opciones[] = {"Alta de Cliente",
