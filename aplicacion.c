@@ -57,4 +57,7 @@ int formularioMonto(Credito *credito){return 0;}
 
 int seleccionarCredito(Credito *creditos){return 0;}
 
-int main(){}
+int main()
+{
+    return 0;
+}
