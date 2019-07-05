@@ -5,7 +5,7 @@
 
 Cliente *crearCliente()
 {
-    return (Cliente *) calloc(sizeof(Cliente), 1);
+    return formularioCliente((Cliente *) calloc(sizeof(Cliente), 1));
 }
 
 void mostrarCliente(Cliente *cliente){
@@ -48,12 +48,9 @@ int esposibleOtroCredito(Cliente *cliente){
     return esNuloCredito(&(cliente->creditos[MAX_CREDITOS -1]));
 }
 
-Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto){
+Credito *crearCreditoCliente(Cliente *cliente, Credito *credito){
     int i = 0;
     int sigo = 1;
-    Credito *credito = malloc(sizeof(Credito));
-    credito->fecha = fecha;
-    credito->saldo = monto;
     while(sigo){
         if(esNuloCredito(&(cliente->creditos[i]))){
             cliente->creditos[i] = *credito;
