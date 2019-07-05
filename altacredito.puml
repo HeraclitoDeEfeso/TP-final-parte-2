@@ -1,27 +1,26 @@
 @startuml
 
 participant Aplicacion
-participant "cliente:Cliente" as Cliente
-collections "creditos:Credito" as Array
-participant "credito:Credito" as Credito
+participant Cliente
+participant Credito
 
 Aplicacion -> Cliente: obtenerCreditos(cliente)
 activate Cliente
 return creditos
-Aplicacion -> Array: esPosibleOtroCredito(creditos)
-activate Array
+Aplicacion -> Cliente: esPosibleOtroCredito(cliente)
+activate Cliente
 return esPosible
 opt esPosible
 	create Credito
-	Aplicacion -> Credito: crearCredito(credito)
+	Aplicacion -> Credito: crearCredito()
 	activate Credito
-	Credito -> Credito: formularioCredito(credito)
+	return nuevoCredito
+	Aplicacion -> Credito: formularioCredito(nuevoCredito)
 	activate Credito
-	return credito
-	return credito
-	Aplicacion -> Array: agregar(credito)
-	activate Array
-	return	
+	return nuevoCredito
+	Aplicacion -> Cliente: crearCreditoCliente(nuevoCredito)
+	activate Cliente
+	return
 end
 
 @enduml
