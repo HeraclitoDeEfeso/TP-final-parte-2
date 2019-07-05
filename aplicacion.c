@@ -5,9 +5,9 @@
 #include "claves.h"
 #include "menu/menu.h"
 
-void altaCliente(FILE *base, int posicionArchivo, Indice *indice, Comparador comparadorClave)
+void altaCliente(FILE *base, long posicionArchivo, Indice *indice, Comparador comparadorClave)
 {
-    Cliente *nuevoCliente = crearCliente();
+    Cliente *nuevoCliente = formularioCliente(crearCliente());
     guardarCliente(nuevoCliente, base);
     agregarClaveIndice(indice, crearClave(nuevoCliente, posicionArchivo), comparadorClave);
 }
@@ -86,5 +86,20 @@ int seleccionarCredito(Credito *creditos)
 
 int main()
 {
+    FILE *base = NULL;
+    long posicionArchivo = 0;
+    FILE *archivoIndice = NULL;
+    Indice *indice = NULL;
+    base = fopen("base.bin", "a+b");
+    posicionArchivo = ftell(base);
+    archivoIndice = fopen("indice.bin", "rb");
+    if (archivoIndice) {
+        indice = recuperarIndice(&recuperarClave, archivoIndice);
+    }
+    Comparador comparadorClave = &compararClave;
+    fclose(archivoIndice);
+    altaCliente(base, posicionArchivo, indice, comparadorClave);
+    archivoIndice = fopen("indice.bin", "wb");
+    persistirIndice(indice, &persistirClave, archivoIndice);
     return 0;
 }
