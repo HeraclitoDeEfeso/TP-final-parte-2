@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "credito.h"
+#include "../credito.h"
 
 void test_credito_es_nulo()
 {

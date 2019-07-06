@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include "test_cliente.h"
-#include "cliente.h"
+#include "../cliente.h"
 
 void test_crear_cliente_con_creditos_nulos()
 {
@@ -22,9 +22,12 @@ void test_es_posible_credito_de_cliente_nuevo()
 void test_no_es_posible_credito_despues_del_maximo()
 {
     Cliente *miCliente = crearCliente();
+    Credito *miCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
-        crearCreditoCliente(miCliente, 20010101, 1000 + i);
+        miCredito = crearCreditoCliente(miCliente);
+        miCredito->fecha = 2010;
+        miCredito->saldo = 200;
     }
     assert(!esposibleOtroCredito(miCliente));
 }
@@ -35,7 +38,9 @@ void test_borrar_credito()
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
-        unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
+        unCredito = crearCreditoCliente(miCliente);
+        unCredito->fecha = 2010;
+        unCredito->saldo = 200;
     }
     assert(!esposibleOtroCredito(miCliente));
     borrarCreditoCliente(miCliente, unCredito);
@@ -49,8 +54,12 @@ void test_no_es_posible_borrar_credito_que_no_tengo()
     Credito *unCredito;
     int i;
     for (i = 0; i < MAX_CREDITOS; i++) {
-        unCredito = crearCreditoCliente(miCliente, 20010101, 1000 + i);
-        unCredito = crearCreditoCliente(otroCliente, 20010101, 2000 + i);
+        unCredito = crearCreditoCliente(miCliente);
+        unCredito->fecha = 2010;
+        unCredito->saldo = 200;
+        unCredito = crearCreditoCliente(otroCliente);
+        unCredito->fecha = 2010;
+        unCredito->saldo = 200;
     }
     borrarCreditoCliente(miCliente, unCredito);
     assert(!esposibleOtroCredito(miCliente));

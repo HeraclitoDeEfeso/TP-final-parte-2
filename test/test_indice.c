@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include "test_indice.h"
-#include "indice.h"
+#include "../indice.h"
 
 int compararIndice(void *clave1, void *clave2)
 {
