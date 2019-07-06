@@ -33,7 +33,7 @@ loop hasta iterador == NULL
     return
     Aplicacion -> Cliente: borrarCliente(cliente)
     destroy Cliente
-nd
+end
 deactivate Aplicacion
 
 @enduml
