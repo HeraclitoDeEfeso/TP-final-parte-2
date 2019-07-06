@@ -1,4 +1,4 @@
-﻿![UNTREF](http://untref.edu.ar/assets/img/logo_mobile.png)
+![UNTREF](http://untref.edu.ar/assets/img/logo_mobile.png)
 # Ingeniería en Computación
 
 ## Algoritmos y Programación 3
@@ -58,9 +58,15 @@ DIA de MES, HORA Hs.
 
 ## 1. Introducción
 
-TODO: 
- - [ ] Agregar teoría de índices de archivos (hay un texto clásico que estaba en la bibliografía de Estructura de Datos). 
- - [ ] Si decidimos usar índices de árboles, investigar y agregar teoría de persistencia de árboles.
+Ya hemos establecido en la Parte 1 de nuestro Trabajo Práctico<a name="cita-2" href="#ref-2"><sup>[2]</sup></a> la utilidad de los Árboles AVL como organizadores de grandes cantidades de información. El desafío en su utilización como índices de archivo, consiste en poder persistir la estructura arbolada con eficacia tanto en el tiempo como en el espacio.
+
+En cuanto al espacio, es evidente que el almacenamiento ordenado de las claves es la solución más compacta. Pero así se pierde la estructura arbolada y por tanto sus propiedades de acceso logarítmico a sus hojas.
+
+La siguiente solución natural incluye ya un procesamiento que introduce el factor tiempo: las claves se almacenan en pre-orden (raiz primero, rama menor después y rama mayor finalmente). Aquí, la comparación de las claves se hace necesaria para mantener la estructura.
+
+Por la vertiente contraria, al asumir que el árbol es completo, o introduciendo claves nulas se podría reconstruir la estructura del árbol sin necesidad de conocer la función de orden del conjunto, con el consecuente costo en espacio desaprovechado.
+
+La solución intermedia habitual y que nosotros implementaremos, es la de agregar un marcador a la clave indicando si es una hoja o si tiene hijos y cuales. Esto reduce el procesamiento y no es necesario conocer la funcion de orden, y no desaprovecha espacio de almacenamiento.
 
 ## 2. Recursos utilizados
 
@@ -104,14 +110,13 @@ y su guía para la documentación<a name="cita-6" href="#ref-6"><sup>[6]</sup></
 
 ### 3.iii. Guía para Compilar
 
-Para compilar y correr los test en Code::Blocks abrir el proyecto `tp-p1.cbp` y seleccionar en la lista de "build target" la configuración `"Debug"` y presionar <kbd>F9</kbd>:
+Para compilar y correr los test en Code::Blocks abrir el proyecto `tp2.cbp` y seleccionar en la lista de "build target" la configuración `"Debug"` y presionar <kbd>F9</kbd>:
 
 ![Debug buil target](Debug.png)
 
-Para compilar y correr la aplicación en Code::Blocks abrir el proyecto "tp-p1.cbp" y seleccionar en la lista de "build target" la configuración `"Release"` y presionar <kbd>F9</kbd>:
+Para compilar y correr la aplicación en Code::Blocks abrir el proyecto `tp2.cbp` y seleccionar en la lista de "build target" la configuración `"Release"` y presionar <kbd>F9</kbd>:
 
 ![Release buil target](Release.png)
-
 
 ### 3.iv. Descripción de Archivos
 
@@ -148,29 +153,17 @@ un Árbol AVL. Tambien contiene la implementacion del TAD iterador utilizado par
 #### Archivo [`indice.h`](indice.h)
 El archivo `indice.h` contiene la interfaz del TAD indice y el TAD Iterador con la definicion de sus metodos.
 
-#### AVL
+#### Carpeta [`avl`](avl\)
+La carpeta contiene la interfaz e implementacion (archivos `avl.h` y `avl.c`) del Árbol AVL<a name="cita-1" href="#ref-1"><sup>[1]</sup></a> correspondiente al Trabajo Practico N°2 Primera Parte.
 
-#### Test
-
-## 4. Conclusiones
-
-TODO:
- - [ ] Crítica de las herramientas utilizadas.
- - [ ] Facilidad/dificultad de conseguir e interpretar teoría.
- - [ ] Conclusiones sobre la fluidez del desarrollo
- - [ ] Conclusiones sobre el alcance y performance de la solución
+#### Carpeta [`test`](test\)
+La carpeta contiene el punto de ingreso `test.c` a todos los test del proyecto, así como la interfaz de los test unitarios para enlazarlos (archivos `test_cliente.h`, `test_credito.h`, etc.) y sus implementaciones.
 
 ## Referencias
-TODO: 
- - [ ] enlaces de las herramientas, 
- - [ ] referencia bibliográfica de la teoría 
- - [ ] enlaces a las guías de normas de programación.
- 
- ## Referencias
 
 <a name="ref-1" href="#cita-1"><sup>[1]</sup></a> Adelson-Velsky, Georgy; Landis, Evgenii (1962). "An algorithm for the organization of information". Proceedings of the USSR Academy of Sciences (in Russian). 146: 263–266
 
-<a name="ref-2" href="#cita-2"><sup>[2]</sup></a> Knuth, Donald E. (2000). Sorting and searching (2. ed., 6. printing, newly updated and rev. ed.). Boston [u.a.]: Addison-Wesley. pp. 458–481
+<a name="ref-2" href="#cita-2"><sup>[2]</sup></a> Monti, Matias; Araneda, Alejandro (2019) "Trabajo Práctico N° 2 de Algoritmos y Programación 3 para la carrera de Ing. en Computación de la UNTREF". recuperado de https://github.com/HeraclitoDeEfeso/ayp3-tp2
 
 <a name="ref-3" href="#cita-3"><sup>[3]</sup></a> "The open source, cross platform, free C, C++ and Fortran IDE", recuperado de www.codeblocks.org
 
