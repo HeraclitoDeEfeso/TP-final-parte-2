@@ -12,112 +12,181 @@ int main()
                                "Listar Clientes por Edad.",
                                "Operar Credito de Cliente.",
                                "Salir."};
-    Menu *menuClientes = crearMenu("Operaciones disponibles con Clientes", opcionesCliente, 5);
+    Menu *menuClientes = NULL;
     int opcion = 0;
-    Indice *indice = cargarIndice();
-    Comparador comparadorClave = &compararClave;
+    int posicion = 0;
+    Indice *indiceNombre = cargarIndiceNombre();
+    Indice *indiceEdad = cargarIndiceEdad();
+    Indice *vistaMenor = NULL;
+    Indice *vistaMayor = NULL;
+    Cliente *cliente = NULL;
+    void *clave = NULL;
+    menuClientes = crearMenu("Operaciones con Clientes", opcionesCliente, 5);
     printf("Bienvenidos a la Base de Clientes.\n");
     while (opcion != 5) {
         switch (opcion = activarMenu(menuClientes)) {
         case 1:
-            printf("Indice: %p\n", indice);
-            altaCliente(&indice, comparadorClave);
-            printf("Indice: %p\n", indice);
+            cliente = altaCliente(&posicion);
+            indiceNombre = agregarClaveIndice(
+                                indiceNombre,
+                                crearClaveNombreDNI(cliente, posicion),
+                                &compararClaveNombreDNI);
+            indiceEdad = agregarClaveIndice(
+                                indiceEdad,
+                                crearClaveEdadDNI(cliente, posicion),
+                                &compararClaveEdadDNI);
+            free(cliente);
             break;
         case 2:
-            printf("Indice: %p\n", indice);
-            listarClientes(indice);
+            printf("\nLimite superior del listado\n");
+            formularioClaveNombreDNI(&clave);
+            vistaMenor = obtenerVistaMenorIndice(
+                            indiceNombre,
+                            clave,
+                            &compararClaveNombreDNI);
+            printf("\nLimite inferior del listado\n");
+            formularioClaveNombreDNI(&clave);
+            vistaMayor = obtenerVistaMayorIndice(
+                            vistaMenor,
+                            clave,
+                            &compararClaveNombreDNI);
+            listarClientes(vistaMayor, &obtenerPosicionClaveNombreDNI);
+            liberarVistaMayor(vistaMayor);
+            liberarVistaMenor(vistaMenor);
             break;
         case 3:
-            listarClientes(indice);
+            printf("\nLimite superior del listado\n");
+            formularioClaveEdadDNI(&clave);
+            vistaMenor = obtenerVistaMenorIndice(
+                            indiceEdad,
+                            clave,
+                            &compararClaveEdadDNI);
+            printf("\nLimite inferior del listado\n");
+            formularioClaveEdadDNI(&clave);
+            vistaMayor = obtenerVistaMayorIndice(
+                            vistaMenor,
+                            clave,
+                            &compararClaveEdadDNI);
+            listarClientes(vistaMayor, &obtenerPosicionClaveEdadDNI);
+            liberarVistaMayor(vistaMayor);
+            liberarVistaMenor(vistaMenor);
             break;
         case 4:
-            operarCredito(seleccionarCliente(indice, comparadorClave));
+            cliente = seleccionarCliente(indiceNombre, &posicion);
+            if (cliente)
+                operarCredito(cliente, posicion);
+            else
+                printf("\nNo existe Cliente con esos Datos\n");
             break;
         case 5:
-            persistirIndice(indice, &persistirClave, fopen("indice.bin", "wb"));
+            persistirIndice(indiceNombre,
+                            &persistirClaveNombreDNI,
+                            fopen("nombre.bin", "wb"));
+            persistirIndice(indiceEdad,
+                            &persistirClaveEdadDNI,
+                            fopen("edad.bin", "wb"));
         }
     }
     return 0;
 }
 
-void altaCliente(Indice **indice, Comparador comparadorClave)
+Cliente *altaCliente(int *posicionArchivo)
 {
-    FILE* base;
-    int posicionArchivo;
-    base = fopen(ARCHIVO_BASE, "ab");
-    fseek(base, 0, SEEK_END);
-    posicionArchivo = ftell(base);
     Cliente *nuevoCliente = formularioCliente(crearCliente());
+    FILE *base = fopen(ARCHIVO_BASE, "ab");
+    fseek(base, 0, SEEK_END);
+    *posicionArchivo = ftell(base);
     guardarCliente(nuevoCliente, base);
-    *indice = agregarClaveIndice(*indice, crearClave(nuevoCliente, posicionArchivo), comparadorClave);
-    free(nuevoCliente);
+    return nuevoCliente;
 }
 
 void altaCredito(Cliente *cliente)
 {
-    if (esposibleOtroCredito(cliente)) {
-        Credito *nuevoCredito = malloc(sizeof(Credito));
-        nuevoCredito = formularioCredito(nuevoCredito);
-        crearCreditoCliente(cliente, nuevoCredito->fecha, nuevoCredito->saldo);
-    }
+    if (esposibleOtroCredito(cliente))
+        formularioCredito(crearCreditoCliente(cliente));
 }
 
 void listarCreditos(Cliente *cliente)
 {
     Credito *creditos = cliente->creditos;
     int i = 0;
+    printf("\nCliente seleccionado:\n");
+    listarAtributosCliente();
     mostrarCliente(cliente);
+    printf("\nCreditos:\n");
+    listarAtributosCredito();
     for (; i < MAX_CREDITOS; i++) {
-        mostrarCredito(creditos + i);
+        if (!esNuloCredito(creditos + i))
+            mostrarCredito(creditos + i);
     }
 }
 
-void operarCredito(Cliente *cliente)
+void operarCredito(Cliente *cliente, int posicionArchivo)
 {
-    Credito *creditos = cliente->creditos;
     Credito *credito;
-    int creditoSeleccionado;
     int montoPago;
-    enum OperacionesCredito operacionSeleccionada;
-    listarCreditos(cliente);
-    creditoSeleccionado = seleccionarCredito(creditos);
-    credito = &creditos[creditoSeleccionado];
-    operacionSeleccionada = seleccionarOperacion(credito);
-    switch (operacionSeleccionada) {
-    case PAGAR_CREDITO:
-        montoPago = formularioMonto(credito);
-        pagarCredito(credito, montoPago);
-        break;
-    case CANCELAR_CREDITO:
-        borrarCreditoCliente(cliente, credito);
-    case NO_OPERAR:
-        break;
-    }
+    enum OperacionesCredito operacion;
+    do {
+        listarCreditos(cliente);
+        switch (operacion = seleccionarOperacion()) {
+        case TOMAR_CREDITO:
+            if (esposibleOtroCredito(cliente)) {
+                formularioCredito(crearCreditoCliente(cliente));
+            }
+            break;
+        case PAGAR_CREDITO:
+            credito = seleccionarCredito(cliente->creditos);
+            montoPago = formularioMonto(credito);
+            pagarCredito(credito, montoPago);
+            break;
+        case CANCELAR_CREDITO:
+            credito = seleccionarCredito(cliente->creditos);
+            borrarCreditoCliente(cliente, credito);
+        case NO_OPERAR:
+            break;
+        }
+        if (operacion != NO_OPERAR) {
+            actualizarCliente(cliente, posicionArchivo);
+        }
+    } while (operacion != NO_OPERAR);
 }
 
-void listarClientes(Indice *vista)
+void listarClientes(Indice *vista, Accesor posicion)
 {
     FILE* base = fopen(ARCHIVO_BASE, "rb");
     Iterador *iterador = obtenerIterador(vista);
-    Clave *clave;
     Cliente *cliente = NULL;
+    int lineas = 0;
+    printf("\nListado de Clientes:\n");
+    listarAtributosCliente();
     while (NULL != iterador) {
-        clave = (Clave*) siguienteIterador(&iterador);
-        fseek(base, clave->posicion, SEEK_SET);
+        if (lineas == PAGINACION) {
+            printf("\n-- PRESIONE UNA TECLA PARA CONTINUAR --\n");
+            getchar();
+            getchar();
+            lineas = 0;
+        }
+        fseek(base, posicion(siguienteIterador(&iterador)), SEEK_SET);
         cliente = recuperarCliente(base);
         mostrarCliente(cliente);
+        lineas++;
         free(cliente);
     }
 }
 
-enum OperacionesCredito seleccionarOperacion(Credito *credito)
+enum OperacionesCredito seleccionarOperacion()
 {
-    char *operaciones[] = {"Pagar Credito.",
+    char *operaciones[] = {"Tomar Credito",
+                           "Pagar Credito.",
                            "Cancelar Credito.",
                            "Salir."};
-    enum OperacionesCredito seleccion[] = {PAGAR_CREDITO, CANCELAR_CREDITO, NO_OPERAR};
-    Menu *menuOperacion = crearMenu("Operaciones disponibles", operaciones, 3);
+    enum OperacionesCredito seleccion[] = {TOMAR_CREDITO,
+                                           PAGAR_CREDITO,
+                                           CANCELAR_CREDITO,
+                                           NO_OPERAR};
+    Menu *menuOperacion = crearMenu("Operaciones de Creditos disponibles",
+                                    operaciones,
+                                    4);
     return seleccion[activarMenu(menuOperacion) - 1];
 }
 
@@ -131,32 +200,59 @@ int formularioMonto(Credito *credito)
     return monto;
 }
 
-int seleccionarCredito(Credito *creditos)
+Credito *seleccionarCredito(Credito *creditos)
 {
     int credito;
     do {
         printf("\nIngrese el credito con el que va operar [1-3]: ");
         if (scanf("%d", &credito) < 1) while (fgetc(stdin) != '\n');
-    } while (credito < 1 || credito > 3 || esNuloCredito(&creditos[credito - 1]));
-    return credito;
+    } while (credito < 1 || credito > 3);
+    return &creditos[credito - 1];
 }
 
-Cliente *seleccionarCliente(Indice *indice, Comparador funcion)
+Cliente *seleccionarCliente(Indice *indice, int* posicion)
 {
+    Cliente *cliente = NULL;
     FILE* base = fopen(ARCHIVO_BASE, "rb");
-    Clave *clave = formularioClave();
-    clave = (Clave*) buscarClaveIndice(indice, clave, funcion);
-    fseek(base, clave->posicion, SEEK_SET);
-    return recuperarCliente(base);
+    void *clave;
+    formularioClaveNombreDNI(&clave);
+    clave = buscarClaveIndice(indice, clave, &compararClaveNombreDNI);
+    if (clave) {
+        *posicion = ((ClaveNombreDNI*) clave)->posicion;
+        fseek(base, *posicion, SEEK_SET);
+        cliente = recuperarCliente(base);
+    }
+    fclose(base);
+    return cliente;
 }
 
-Indice *cargarIndice()
+void actualizarCliente(Cliente *cliente, long posicionArchivo)
+{
+    FILE* base = fopen(ARCHIVO_BASE, "r+b");
+    fseek(base, posicionArchivo, SEEK_SET);
+    guardarCliente(cliente, base);
+    fclose(base);
+}
+
+Indice *cargarIndiceNombre()
 {
     FILE *archivoIndice = NULL;
     Indice *indice = NULL;
-    archivoIndice = fopen("indice.bin", "rb");
+    archivoIndice = fopen("nombre.bin", "rb");
     if (archivoIndice) {
-        indice = recuperarIndice(&recuperarClave, archivoIndice);
+        indice = recuperarIndice(&recuperarClaveNombreDNI, archivoIndice);
+    }
+    fclose(archivoIndice);
+    return indice;
+}
+
+Indice *cargarIndiceEdad()
+{
+    FILE *archivoIndice = NULL;
+    Indice *indice = NULL;
+    archivoIndice = fopen("edad.bin", "rb");
+    if (archivoIndice) {
+        indice = recuperarIndice(&recuperarClaveEdadDNI, archivoIndice);
     }
     fclose(archivoIndice);
     return indice;

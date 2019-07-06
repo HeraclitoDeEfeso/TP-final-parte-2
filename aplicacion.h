@@ -4,28 +4,34 @@
 #include "credito.h"
 #include "cliente.h"
 #include "indice.h"
+#include "claves.h"
 #define ARCHIVO_BASE "base.bin"
+#define PAGINACION 25
 
-enum OperacionesCredito {PAGAR_CREDITO, CANCELAR_CREDITO, NO_OPERAR};
-
-enum OperacionesCredito seleccionarOperacion(Credito *credito);
-
-int formularioMonto(Credito *credito);
-
-int seleccionarCredito(Credito *creditos);
-
-void operarCredito(Cliente *cliente);
+void operarCredito(Cliente *cliente, int posicionArchivo);
 
 void listarCreditos(Cliente *cliente);
 
 void altaCredito(Cliente *cliente);
 
-void altaCliente(Indice **indice, Comparador comparadorClave);
+Cliente *altaCliente(int *posicionArchivo);
 
-void listarClientes(Indice *vista);
+void listarClientes(Indice *vista, Accesor posicion);
 
-Cliente *seleccionarCliente(Indice *indice, Comparador funcion);
+void actualizarCliente(Cliente *cliente, long posicionArchivo);
 
-Indice *cargarIndice();
+enum OperacionesCredito {TOMAR_CREDITO, PAGAR_CREDITO, CANCELAR_CREDITO, NO_OPERAR};
+
+enum OperacionesCredito seleccionarOperacion();
+
+Cliente *seleccionarCliente(Indice *i, int* posicion);
+
+int formularioMonto(Credito *credito);
+
+Credito *seleccionarCredito(Credito *creditos);
+
+Indice *cargarIndiceEdad();
+
+Indice *cargarIndiceNombre();
 
 #endif //__APLICACION__
