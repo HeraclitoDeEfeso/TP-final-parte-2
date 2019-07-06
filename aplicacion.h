@@ -8,6 +8,8 @@
 #define ARCHIVO_BASE "base.bin"
 #define PAGINACION 25
 
+/* Módulos descriptos en los Diagramas de Secuencia */
+
 void operarCredito(Cliente *cliente, int posicionArchivo);
 
 void listarCreditos(Cliente *cliente);
@@ -17,6 +19,8 @@ void altaCredito(Cliente *cliente);
 Cliente *altaCliente(int *posicionArchivo);
 
 void listarClientes(Indice *vista, Accesor posicion);
+
+/* Módulos y funciones auxiliares */
 
 void actualizarCliente(Cliente *cliente, long posicionArchivo);
 
