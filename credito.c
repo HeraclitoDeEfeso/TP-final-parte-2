@@ -21,28 +21,27 @@ void borrarCredito(Credito *credito){
 }
 
 void mostrarCredito(Credito *credito){
-    printf("%8i %13i\n",
+    printf("%10i | %9i\n",
            credito->fecha, credito->saldo);
 }
 
-Credito *formularioCredito(Credito *credito){
-    int monto;
-    int fecha;
-    printf("Fecha del credito: ");
+void formularioCredito(Credito *credito) {
+    int monto = 0;
+    int fecha = 0;
+    printf("\nIngrese los datos del Credito \n");
+    printf("Fecha del Credito: ");
     scanf("%i", &fecha);
-    printf("Monto : ");
+    printf("Monto del Credito: ");
     scanf("%i", &monto);
     credito->fecha = fecha;
     credito->saldo = monto;
-    if(monto < 0 ){
-        printf("el monton del credito no es valido");
-        credito = formularioCredito(credito);
+    if (monto < 0 ) {
+        printf("El monto del Credito no es valido. Reintente.\n");
+        formularioCredito(credito);
+    } else if (fecha == 0 ) {
+        printf("La fecha del Credito no es valida. Reintente.\n");
+        formularioCredito(credito);
     }
-    else if(fecha == 0 ){
-        printf("la fecha del credito no es valida");
-        credito = formularioCredito(credito);
-    }
-    return credito;
 }
 
 int esNuloCredito(Credito *credito){

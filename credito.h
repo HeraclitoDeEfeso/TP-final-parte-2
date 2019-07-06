@@ -31,13 +31,13 @@ void pagarCredito(Credito *credito,int monto);
 void mostrarCredito(Credito *credito);
 
 /**
- * formularioCredito() - Crea o modifica un credito.
- * @credito:Credito que sera modificado o creado
+ * formularioCredito() - Modifica los valores de un credito.
+ * @credito: Credito que sera modificado
  *
- * Método para crear un credito desde 0 o modificarlo con la informacion que proporcionara el usuario desde la consola.
- * return: devuelve un puntero al credito
+ * Método para modificar un credito con la informacion
+ * que proporcionara el usuario desde la consola.
  */
-Credito *formularioCredito(Credito *credito);
+void formularioCredito(Credito *credito);
 
 /**
  * esNuloCredito() - Dice si un credito esta disponible.
@@ -56,5 +56,7 @@ int esNuloCredito(Credito *credito);
  * Establece los datos del credito en 0 lo cual lo deja como disponibles si el cliente desea usarlo
  */
 void borrarCredito(Credito *credito);
+
+void listarAtributosCredito();
 
 #endif //__CREDITO__
