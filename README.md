@@ -50,6 +50,8 @@ DIA de MES, HORA Hs.
       4. [Alta de Crédito](#3iid-alta-de-crédito)
       5. [Listar Créditos](#3iie-listar-créditos)
       6. [Operar Crédito](#3iif-operar-crédito)
+   3. [Guía para Compilar](#3iii-guía-para-compilar)
+   4. [Descripción de Archivos](#3iv-descripción-de-archivos)
 4. [Conclusiones](#4-conclusiones)
 
 [Referencias](#referencias)
@@ -62,13 +64,6 @@ TODO:
 
 ## 2. Recursos utilizados
 
-TODO: 
- - [ ] Detalles del entorno de programación (IDE, Compilador, plataforma). 
- - [ ] Detalles del standard C utilizado. 
- - [ ] Detalles de las normas de programación seguidas. 
- 
- ## 2. Recursos utilizados
-
 Para nuestro desarrollo hemos utilizida el Entorno de Desarrollo Integrado (IDE) Code::Blocks<a name="cita-3" href="#ref-3"><sup>[3]</sup></a>
 para el sistema operativo Windows y con un compilador portado del GCC de GNU aportado por el proyecto de entorno de desarrollo MinGW<a name="cita-4" href="#ref-4"><sup>[4]</sup></a>. 
 
@@ -76,13 +71,6 @@ En cuanto al lenguage C propiamente, hemos utilizado sólo las características 
 y su guía para la documentación<a name="cita-6" href="#ref-6"><sup>[6]</sup></a>. 
 
 ## 3. Detalles de implementación
-
-TODO: 
- - [ ] guía para compilar y ejecutar la aplicación. 
- - [ ] Guía para compilar y ejecutar las pruebas.
- - [ ] UML.
- - [ ] por cada archivo "header" detallar los tipos definidos y la interfaz. 
- - [ ] Por cada "source" hacer un resumen de la implementación sólo con detalles relevantes de código.
 
 ### 3.i. Diagrama de Clases
 
@@ -114,7 +102,18 @@ TODO:
 
 ![Diagrama de Secuencia: Operar Crédito](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MatiasMonti/TP-final-parte-2/master/operarcredito.puml)
 
-#### 3.iii. Detalles de implementación
+### 3.iii. Guía para Compilar
+
+Para compilar y correr los test en Code::Blocks abrir el proyecto `tp-p1.cbp` y seleccionar en la lista de "build target" la configuración `"Debug"` y presionar <kbd>F9</kbd>:
+
+![Debug buil target](Debug.png)
+
+Para compilar y correr la aplicación en Code::Blocks abrir el proyecto "tp-p1.cbp" y seleccionar en la lista de "build target" la configuración `"Release"` y presionar <kbd>F9</kbd>:
+
+![Release buil target](Release.png)
+
+
+### 3.iv. Descripción de Archivos
 
 #### Archivo [`aplicacion.c`](aplicacion.c)
 
@@ -152,18 +151,6 @@ El archivo `indice.h` contiene la interfaz del TAD indice y el TAD Iterador con 
 #### AVL
 
 #### Test
-
-
-
-### 3.iv. Guía de Compilación
-
-Para compilar y correr los test en Code::Blocks abrir el proyecto `tp-p1.cbp` y seleccionar en la lista de "build target" la configuración `"Debug"` y presionar <kbd>F9</kbd>:
-
-![Debug buil target](Debug.png)
-
-Para compilar y correr la aplicación en Code::Blocks abrir el proyecto "tp-p1.cbp" y seleccionar en la lista de "build target" la configuración `"Release"` y presionar <kbd>F9</kbd>:
-
-![Release buil target](Release.png)
 
 ## 4. Conclusiones
 
