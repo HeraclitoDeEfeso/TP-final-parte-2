@@ -124,3 +124,19 @@ void *buscarClaveIndice(Indice *indice, void *clave, Comparador funcion)
     Arbol *encontrado = buscarArbol(indice, clave, funcion);
     return (NULL != encontrado)? encontrado->clave : encontrado;
 }
+
+void liberarVistaMayor(Indice *vista)
+{
+    if (NULL != vista) {
+        liberarVistaMayor(vista->izquierda);
+        free(vista);
+    }
+}
+
+void liberarVistaMenor(Indice *vista)
+{
+    if (NULL != vista) {
+        liberarVistaMenor(vista->derecha);
+        free(vista);
+    }
+}

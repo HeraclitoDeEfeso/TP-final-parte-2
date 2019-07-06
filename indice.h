@@ -198,4 +198,22 @@ void *siguienteIterador(Iterador **iterador);
  */
 void *buscarClaveIndice(Indice *indice, void *clave, Comparador funcion);
 
+/**
+ * liberarVistaMayor() - Método para liberar de la memoria la vista.
+ * @vista: indice en el que se quiere buscar la clave.
+ *
+ * Método para liberar de la memoria la vista creada con `obtenerVistaMayor`.
+ * Precondición: ninguna. Postcondicion: se liberará memoria.
+ */
+void liberarVistaMayor(Indice *vista);
+
+/**
+ * liberarVistaMenor() - Método para liberar de la memoria la vista.
+ * @vista: indice en el que se quiere buscar la clave.
+ *
+ * Método para liberar de la memoria la vista creada con `obtenerVistaMenor`.
+ * Precondición: ninguna. Postcondicion: se liberará memoria.
+ */
+void liberarVistaMenor(Indice *vista);
+
 #endif //__INDICE__
