@@ -58,7 +58,7 @@ DIA de MES, HORA Hs.
 
 ## 1. Introducción
 
-Ya hemos establecido en la Parte 1 de nuestro Trabajo Práctico<a name="cita-2" href="#ref-2"><sup>[2]</sup></a> la utilidad de los Árboles AVL como organizadores de grandes cantidades de información. El desafío en su utilización como índices de archivo, consiste en poder persistir la estructura arbolada con eficacia tanto en el tiempo como en el espacio.
+Ya hemos establecido en la Parte 1 de nuestro Trabajo Práctico<a name="cita-2" href="#ref-2"><sup>[2]</sup></a> la utilidad de los Árboles AVL<a name="cita-1" href="#ref-1"><sup>[1]</sup></a> como organizadores de grandes cantidades de información. El desafío en su utilización como índices de archivo, consiste en poder persistir la estructura arbolada con eficacia tanto en el tiempo como en el espacio.
 
 En cuanto al espacio, es evidente que el almacenamiento ordenado de las claves es la solución más compacta. Pero así se pierde la estructura arbolada y por tanto sus propiedades de acceso logarítmico a sus hojas.
 
@@ -153,10 +153,10 @@ un Árbol AVL. Tambien contiene la implementacion del TAD iterador utilizado par
 #### Archivo [`indice.h`](indice.h)
 El archivo `indice.h` contiene la interfaz del TAD indice y el TAD Iterador con la definicion de sus metodos.
 
-#### Carpeta [`avl`](avl\)
+#### Carpeta [`avl`](/avl)
 La carpeta contiene la interfaz e implementacion (archivos `avl.h` y `avl.c`) del Árbol AVL<a name="cita-1" href="#ref-1"><sup>[1]</sup></a> correspondiente al Trabajo Practico N°2 Primera Parte.
 
-#### Carpeta [`test`](test\)
+#### Carpeta [`test`](/test)
 La carpeta contiene el punto de ingreso `test.c` a todos los test del proyecto, así como la interfaz de los test unitarios para enlazarlos (archivos `test_cliente.h`, `test_credito.h`, etc.) y sus implementaciones.
 
 ## Referencias
