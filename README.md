@@ -10,7 +10,7 @@
   * Araneda Alejandro - eloscurodeefeso@gmail.com
 
 Trabajo Práctico entregado el:  
-DIA de MES, HORA Hs.  
+6 de Julio, 9 Hs.  
 1ro Cuatrimestre de 2019
 
 #### Docentes:
@@ -172,5 +172,3 @@ La carpeta contiene el punto de ingreso `test.c` a todos los test del proyecto, 
 <a name="ref-5" href="#cita-5"><sup>[5]</sup></a> "Linux kernel coding style", recuperado de http://www.kernel.org/doc/html/v4.10/process/coding-style.html
 
 <a name="ref-6" href="#cita-6"><sup>[6]</sup></a> "Writing kernel-doc comments", recuperado de http://www.kernel.org/doc/html/v4.10/doc-guide/kernel-doc.html
-
-<a name="ref-7" href="#cita-7"><sup>[7]</sup></a> "AVL Trees BST: Efficiency of Operations", recuperado de https://courses.cs.washington.edu/courses/cse373/16au/slides/10-AVL-6up.pdf
