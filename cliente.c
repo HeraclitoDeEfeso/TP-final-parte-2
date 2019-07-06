@@ -21,15 +21,16 @@ void mostrarCliente(Cliente *cliente){
 }
 
 Cliente *formularioCliente(Cliente *cliente){
+    printf("\nIngrese los datos del Cliente\n");
     printf("Edad del cliente: ");
     scanf("%i", &(cliente->edad));
-    printf("dni : ");
+    printf("             DNI: ");
     scanf("%i", &(cliente->dni));
-    printf("Nombre: ");
+    printf("          Nombre: ");
     scanf("%s", cliente->nombre);
-    printf("Apellido: ");
+    printf("        Apellido: ");
     scanf("%s", cliente->apellido);
-    printf("Referencia : ");
+    printf("      Referencia: ");
     scanf("%i", &(cliente->referencia));
     return cliente;
 }
@@ -45,7 +46,7 @@ Cliente *recuperarCliente(FILE *archivo){
 
 void guardarCliente(Cliente *cliente, FILE *archivo){
     if(archivo){
-        fwrite(cliente,sizeof(Cliente),1,archivo);
+        fwrite(cliente, sizeof(Cliente), 1, archivo);
     }
     else printf("el archivo no es valido");
 }
@@ -54,28 +55,24 @@ int esposibleOtroCredito(Cliente *cliente){
     return esNuloCredito(&(cliente->creditos[MAX_CREDITOS -1]));
 }
 
-Credito *crearCreditoCliente(Cliente *cliente, int fecha, int monto){
+Credito *crearCreditoCliente(Cliente *cliente)
+{
+    Credito *credito = NULL;
     int i = 0;
-    int sigo = 1;
-    Credito *credito = malloc(sizeof(Credito));
-    credito->fecha = fecha;
-    credito->saldo = monto;
-    while(sigo){
-        if(esNuloCredito(&(cliente->creditos[i]))){
-            cliente->creditos[i] = *credito;
-            sigo = 0;
+    for (; i < MAX_CREDITOS && credito == NULL; i++) {
+        if (esNuloCredito(cliente->creditos + i)) {
+            credito = cliente->creditos + i;
         }
-        else i++;
     }
     return credito;
 }
 
 void borrarCreditoCliente(Cliente *cliente, Credito *credito){
-    int i;
-    for(i=0;i < MAX_CREDITOS; i++){
-        //no deberia haber dos creditos con misma fecha y saldo
-        if(cliente->creditos[i].fecha == credito->fecha && cliente->creditos[i].saldo == credito->saldo){
-            borrarCredito(&(cliente->creditos[i]));
+    int i = 0;
+    for(; i < MAX_CREDITOS; i++) {
+        if (cliente->creditos + i == credito) {
+            memmove(credito, credito + 1, (2 - i) * sizeof(Credito));
+            borrarCredito(cliente->creditos + (MAX_CREDITOS - 1));
         }
     }
 }
